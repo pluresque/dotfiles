@@ -1,6 +1,6 @@
 return {
   'stevearc/aerial.nvim',
-  event = 'BufRead',
+  event = { "BufReadPost", "BufNewFile" },
   opts = {},
   config = function()
     require('aerial').setup {
@@ -13,6 +13,5 @@ return {
   end,
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
-    'nvim-tree/nvim-web-devicons',
   },
 }

@@ -2,7 +2,6 @@ return {
   {
     'echasnovski/mini.nvim',
     event = 'VeryLazy',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       -- Better Around/Inside textobjects
       --  - va)  - [V]isually select [A]round [)]paren
@@ -28,6 +27,11 @@ return {
           hex_color = hipatterns.gen_highlighter.hex_color(),
         },
       }
+
+      local miniicons = require 'mini.icons'
+      miniicons.setup { style = 'glyph' }
+      miniicons.mock_nvim_web_devicons()
+
       -- File explorer
       require('mini.files').setup {
         mappings = {

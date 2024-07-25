@@ -1,8 +1,10 @@
 vim.loader.enable()
 
-require 'options' -- Options for Vim
-require 'lib.lazy' -- Package Manager init 
-require 'lib.statusline' -- Statusline 
-require 'lib.sessions' -- Sessions Manager
-require 'autocmds' -- Autocmds
-require 'keymaps' -- Custom keymaps
+require 'config.options'  -- General Options
+require 'config.lazy'     -- Package Manager 
+require 'config.autocmds' -- Autocommands
+require 'config.keymaps'  -- Keymaps
+
+-- Custom Plugins
+require 'lib.sessions'    -- Session Manager
+require 'lib.statusline'  -- Statusline 

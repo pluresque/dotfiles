@@ -1,11 +1,10 @@
 return {
   {
     'mfussenegger/nvim-lint',
-    -- event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
-    ft = { 'python' },
+    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
     config = function()
       require('lint').linters_by_ft = {
-        -- python = { 'ruff' }
+        dockerfile = { 'hadolint' },
       }
 
       vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePost' }, {

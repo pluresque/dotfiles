@@ -69,12 +69,28 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1719696015,
+        "narHash": "sha256-2Cr9RYM276lo1a9g3QaflZy7/TxtDXpAhxWF3WsEPhQ=",
+        "owner": "nix-community",
+        "repo": "nur",
+        "rev": "9bf273a054250a990e3751cc7ae280c6ff5b4220",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "darwin": "darwin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-darwin": "nixpkgs-darwin"
+        "nixpkgs-darwin": "nixpkgs-darwin",
+        "nur": "nur"
       }
     }
   },

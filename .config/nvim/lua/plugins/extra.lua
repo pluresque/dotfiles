@@ -4,5 +4,5 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     opts = {},
   },
-  { 'lewis6991/gitsigns.nvim', event = 'VeryLazy', config = true }
+  -- { 'lewis6991/gitsigns.nvim', event = 'VeryLazy', config = true }
 }

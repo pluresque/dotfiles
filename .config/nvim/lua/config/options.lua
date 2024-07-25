@@ -7,9 +7,9 @@ vim.o.mouse = 'a' -- Enable mouse support in all modes
 vim.o.sessionoptions = 'buffers,curdir,tabpages,winsize,folds'
 
 -- Folds
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldlevel = 99 
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.foldopen = ''
@@ -67,14 +67,29 @@ vim.o.iminsert = 0 -- Disable IME (Input Method Editor) in insert mode
 
 vim.o.showtabline = 0
 
-vim.g.undotree_WindowLayout = 3
-vim.g.undotree_SplitWidth = 50
-vim.g.undotree_HelpLine = 0
-
 -- Diagnostics
 vim.diagnostic.config {
   virtual_text = false,
   update_in_insert = true,
+}
+
+-- Undotree
+vim.g.undotree_WindowLayout = 3
+vim.g.undotree_SplitWidth = 50
+vim.g.undotree_HelpLine = 0
+
+-- Floaterm
+vim.g.floaterm_width = 0.8
+vim.g.floaterm_height = 0.8
+
+-- Filetypes
+vim.filetype.add {
+  pattern = {
+    ['.*/.github/workflows/.*%.yml'] = 'yaml.ghaction',
+    ['.*/.github/workflows/.*%.yaml'] = 'yaml.ghaction',
+    -- ['.*/Dockerfile.*'] = 'yaml.dockerfile',
+    -- ['.*/.*%.Dockerfile'] = 'yaml.dockerfile',
+  },
 }
 
 if vim.g.neovide then

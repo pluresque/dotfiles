@@ -41,7 +41,8 @@ require('lazy').setup('plugins', {
         'bugreport',
         'editorconfig',
         'osc52',
-        'man'
+        'man',
+        'shada'
       },
     },
   },

@@ -71,12 +71,3 @@ m('t', '<esc>', '<cmd>close<cr>', { desc = 'Enter Normal Mode' })
 -- Diagnostics
 m('n', 'xo', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { noremap = true, remap = true })
 
-vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function(event)
-    local opts = { buffer = event.buf }
-    m('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    m('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    m('n', 'lr', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  end,
-})

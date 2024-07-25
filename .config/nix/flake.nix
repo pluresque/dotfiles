@@ -11,6 +11,8 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+
+    nur.url = "github:nix-community/nur";
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -23,6 +25,7 @@
     nixpkgs,
     darwin,
     home-manager,
+    nur,
     ...
   }: let
     username = "apple";
@@ -40,9 +43,11 @@
     darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
+        ./darwin/system.nix
+        ./darwin/homebrew.nix
         ./modules/nix-core.nix
         ./modules/apps.nix
-        ./modules/system.nix
+        ./modules/fonts.nix
         ./modules/host-users.nix
 
         home-manager.darwinModules.home-manager

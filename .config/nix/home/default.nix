@@ -1,15 +1,14 @@
 { username, ... }:
 
 {
-  # import sub modules
   imports = [
     ./shell.nix
-    ./core.nix
+    ./extra.nix
     ./git.nix
+    ./terminal.nix
+    ./packages.nix
   ];
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
   home = {
     username = username;
     homeDirectory = "/Users/${username}";
@@ -31,6 +30,5 @@
     };
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
