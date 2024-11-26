@@ -22,14 +22,13 @@ return {
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },
-
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = 'gnn',
-          node_incremental = '<Tab>',
-          scope_incremental = 'grc',
-          node_decremental = '<S-Tab>',
+          init_selection = "<Tab>",
+          node_incremental = "<Tab>",
+          scope_incremental = false,
+          node_decremental = "<S-Tab>",
         },
       },
     },

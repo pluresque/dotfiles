@@ -22,6 +22,8 @@
       launchctl start com.apple.Dock.agent
     '';
 
+    stateVersion = 5;
+
     defaults = {
       menuExtraClock.Show24Hour = true;  # show 24 hour clock
       
@@ -29,10 +31,10 @@
       dock = {
         autohide = true;
         show-recents = false;  # disable recent apps
-        wvous-tl-corner = 2;  # top-left - Mission Control
-        wvous-tr-corner = 3;  # top-right - Lock Screen
-        wvous-bl-corner = 3;  # bottom-left - Application Windows
-        wvous-br-corner = 4;  # bottom-right - Desktop
+        wvous-tl-corner = 1;  # top-left - Mission Control
+        wvous-tr-corner = 1;  # top-right - Lock Screen
+        wvous-bl-corner = 1;  # bottom-left - Application Windows
+        wvous-br-corner = 1;  # bottom-right - Desktop
       };
       
       dock.persistent-apps = [
@@ -53,7 +55,7 @@
 
       # customize trackpad
       trackpad = {
-        Clicking = false;  # enable tap to click(轻触触摸板相当于点击)
+        Clicking = false;  # enable tap to click
         TrackpadRightClick = true;  # enable two finger right click
         TrackpadThreeFingerDrag = true;  # enable three finger drag
       };

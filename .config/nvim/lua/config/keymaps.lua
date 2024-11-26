@@ -1,18 +1,15 @@
 local m = vim.keymap.set
 
--- Up/Down with wrap 
-m({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
-m({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
+-- Up/Down with wrap
+m({ 'n', 'x' }, '<Down>', 'gj', { desc = 'Down', silent = true })
+m({ 'n', 'x' }, '<Up>', 'gk', { desc = 'Up', silent = true })
 
 -- Centered searching
-m('n', 'n', 'nzzzv', { desc = 'Search Next' })
-m('n', 'N', 'Nzzzv', { desc = 'Search Previous' })
+m('n', 'n', 'nzzzv', { desc = 'Search Next', silent = true })
+m('n', 'N', 'Nzzzv', { desc = 'Search Previous', silent = true })
 
--- Movement with TAB Q W E 
 m('n', 'q', 'b', { noremap = true, desc = 'Go to previous word (start)' })
 m('n', 'Q', 'B', { noremap = true, desc = 'Go to previous word (start, ignoring punctuation)' })
-m('n', '<Tab>', 'ge', { noremap = true, desc = 'Go to previous word (end)' })
-m('n', '<S-Tab>', 'gE', { noremap = true, desc = 'Go to previous word (end, ignoring punctuation)' })
 
 -- Jump half pages
 m('n', '=', '<C-u>zz', { noremap = true, silent = true, desc = 'Page up' })
@@ -20,7 +17,7 @@ m('n', '-', '<C-d>zz', { noremap = true, silent = true, desc = 'Page down' })
 
 m('n', '<BS>', 'ciw', { desc = 'Delete word' })
 
-m('n', '<esc>', '<cmd>noh<cr>', { desc = 'Clear search highlight' })
+m('n', '<esc>', '<cmd>noh<cr>', { desc = 'Clear search highlight', silent = true })
 
 -- Better indenting
 m('v', '<', '<gv', { desc = 'Indent Line Left' })
@@ -30,8 +27,8 @@ m('v', '<S-Right>', '>gv', { desc = 'Indent block.', silent = true, noremap = tr
 m('n', '<S-Left>', '<<', { desc = 'Deindent line.' })
 m('v', '<S-Left>', '<gv', { desc = 'Deindent block.', silent = true, noremap = true })
 
-m({ 'i', 'x', 'n', 's' }, '<C-q>', '<cmd>qa<cr><esc>', { desc = 'Quit' })
-m({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>wa<cr><esc>', { desc = 'Save File' })
+m({ 'i', 'x', 'n', 's' }, '<C-q>', '<cmd>qa<cr><esc>', { desc = 'Quit', silent = true })
+m({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>wa<cr><esc>', { desc = 'Save Files', silent = true })
 
 m({ 'n' }, '<C-a>', 'ggVG', { desc = 'Select all text' })
 m({ 'i' }, '<C-a>', '<esc>ggVG', { desc = 'Select all text' })
@@ -57,7 +54,7 @@ m('n', '<C-S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Wi
 m('n', '<C-S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- Explorer
-m({ 'n', 'i' }, '<C-e>', [[<Cmd>lua MiniFiles.open()<CR>]], {})
+m({ 'n', 'i' }, '<C-e>', [[<Cmd>lua MiniFiles.open()<CR>]], { silent = true, desc = 'Open File Explorer' })
 
 -- Lazy
 m('n', '<leader>tl', '<cmd>Lazy<cr>', { desc = 'Toggle Lazy' })
@@ -70,4 +67,3 @@ m('t', '<esc>', '<cmd>close<cr>', { desc = 'Enter Normal Mode' })
 
 -- Diagnostics
 m('n', 'xo', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { noremap = true, remap = true })
-

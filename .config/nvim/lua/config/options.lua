@@ -13,6 +13,14 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.foldopen = ''
+vim.cmd([[
+  set foldtext= 
+]])
+
+vim.o.cursorline = true
+-- vim.cmd([[
+--   set cursorline=
+-- ]])
 
 -- Search and Highlighting
 vim.o.hlsearch = true -- Stop highlighting matches after search is done
@@ -24,7 +32,7 @@ vim.o.inccommand = 'split' -- Preview substitutions in a split window
 
 -- Line Numbers and Sign Columns
 vim.o.number = true -- Show absolute line numbers
-vim.o.relativenumber = true -- Show relative line numbers
+-- vim.o.relativenumber = true -- Show relative line numbers
 vim.o.numberwidth = 4 -- Set the width of the line number column
 vim.o.signcolumn = 'yes:1' -- Show signs in the number column
 
@@ -48,8 +56,6 @@ vim.o.splitright = true -- Split windows open to the right of the current window
 vim.o.showtabline = 2 -- Always show tabline
 vim.o.laststatus = 3 -- Global status line
 vim.o.termguicolors = true -- Enable 24-bit RGB color in the TUI
-vim.o.shortmess = vim.o.shortmess .. 'I' -- Avoid showing the intro message
-vim.o.showmode = false -- Don't display mode (e.g., -- INSERT --)
 
 -- Files and Backups
 vim.o.swapfile = false -- Disable swap file creation
@@ -60,8 +66,7 @@ vim.o.wrap = true
 vim.o.showbreak = '↪ '
 
 -- Completion
-vim.o.completeopt = 'menu,menuone,noselect,popup' -- Customize completion options
-
+vim.o.completeopt = 'menu,menuone,popup,noselect' -- Customize completion options
 -- International Input
 vim.o.iminsert = 0 -- Disable IME (Input Method Editor) in insert mode
 
@@ -71,25 +76,6 @@ vim.o.showtabline = 0
 vim.diagnostic.config {
   virtual_text = false,
   update_in_insert = true,
-}
-
--- Undotree
-vim.g.undotree_WindowLayout = 3
-vim.g.undotree_SplitWidth = 50
-vim.g.undotree_HelpLine = 0
-
--- Floaterm
-vim.g.floaterm_width = 0.8
-vim.g.floaterm_height = 0.8
-
--- Filetypes
-vim.filetype.add {
-  pattern = {
-    ['.*/.github/workflows/.*%.yml'] = 'yaml.ghaction',
-    ['.*/.github/workflows/.*%.yaml'] = 'yaml.ghaction',
-    -- ['.*/Dockerfile.*'] = 'yaml.dockerfile',
-    -- ['.*/.*%.Dockerfile'] = 'yaml.dockerfile',
-  },
 }
 
 if vim.g.neovide then

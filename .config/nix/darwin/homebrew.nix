@@ -5,6 +5,7 @@
 
     onActivation = {
       autoUpdate = true;
+      upgrade = true;
       cleanup = "zap";
     };
 
@@ -19,16 +20,14 @@
     taps = [
       "homebrew/cask-fonts"
       "homebrew/services"
-      "zegervdv/zathura"
     ];
 
     brews = [
-      "neovim" "zegervdv/zathura/zathura" "zegervdv/zathura/zathura-pdf-mupdf" "choose-gui" "postgresql@16"
+          "ncdu" "texlive" "sshfs"
     ];
 
     casks = [
-      "raycast" "hiddenbar" "tomatobar" "iina" "amethyst" "bitwarden" "arc"
-      "android-platform-tools"
+      "raycast" "tomatobar" "iina" "amethyst" "arc" "macfuse"
     ];
   };
 

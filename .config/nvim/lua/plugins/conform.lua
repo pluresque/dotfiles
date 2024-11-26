@@ -15,7 +15,8 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       python = { 'ruff_format' },
-      javascript = { { 'prettierd', 'prettier' } },
+      javascript = { { 'prettier' } },
+      typescript = { { 'prettier' } },
       php = { 'php' },
     },
     format_on_save = function(bufnr)

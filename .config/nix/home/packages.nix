@@ -3,34 +3,41 @@
 {
   home.packages = with pkgs; [
     # Languages
-    go
     rustup
+    zig
     nodejs
     nodePackages.prettier
     nodePackages.npm
-    yarn
-    lua
+    nodePackages.yarn
+    nodePackages.eslint
     python311Full
+    dotnetCorePackages.sdk_8_0_2xx
+
     # Tools
     git
     fzf # Fuzzy finder
     zoxide # Better cd
     eza # Better ls
-    yt-dlp # Download videos
+    yt-dlp 
+    unstable.neovim
     ripgrep 
     fd
     just
     tldr
-    yazi
-    pipx
     mpv
     zip
     unzip
+    postgresql_16
     wget
     curl
-    exiftool
+    exiftool # Metadata viewer
     tree
     ngrok
+    ffmpeg
+    smartmontools
+    zola
+    zellij
+    ctop
 
     # DevOps
     terraform
@@ -39,13 +46,9 @@
     kubernetes-helm
     minikube
     docker
-    docker-compose
     colima
 
     # GUI apps
-    spotify
-    obsidian
     wezterm
-    zathura
   ];
 }

@@ -8,23 +8,6 @@
 
 This repository contains my personal everchanging configuration for a general-purpose development environment that runs Nix on macOS, NixOS, or any other Linux (yet to be done). Due to limitations both Windows and WSL are not supported and likely will never be.
 
-## Features
-- **Nix Flakes**: 100% flake driven, no `configuration.nix`, no Nix channels ─ just `flake.nix`
-- **Managed Homebrew**: Zero maintenance homebrew environment 
-- **Consistent Environment**: Easily share config across Linux and macOS (both Nix and Home Manager)
-- **Nix Darwin**: Fully declarative macOS (Apple / Intel) w/ UI, dock and macOS App Store apps
-- **Neovim**: IDE-like experience with LSP, Treesitter and more
-
-## Components
-
-| Component                   | Description                                     | 
-| --------------------------- | :---------------------------------------------  |
-| **Window Manager**          | Amethyst + skhd                                 |
-| **Terminal Emulator**       | Wezterm                                         |
-| **Text Editor**             | neovim                                          |
-| **Application Launcher**    | Raycast                                         |
-| **File Manager**            | yazi                                            |
-
 ## Repository Structure
 
 - `flake.nix`: Entrypoint for hosts and home configurations.

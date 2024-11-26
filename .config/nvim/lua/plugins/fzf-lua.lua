@@ -1,8 +1,8 @@
 return {
   {
     'ibhagwan/fzf-lua',
+    lazy = false,
     cmd = 'FzfLua',
-    -- dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '<leader><space>', '<cmd>FzfLua files<cr>' },
       { '<leader>,', '<cmd>FzfLua buffers<cr>' },
@@ -19,8 +19,8 @@ return {
     config = function()
       require('fzf-lua').setup {
         winopts = {
-          height = 0.95,
-          width = 0.95,
+          height = 0.85,
+          width = 0.85,
           row = 0.35,
           col = 0.50,
           preview = {
@@ -28,13 +28,12 @@ return {
             horizontal = 'right:50%'
           },
         },
-        -- defaults = {
-        --   multiline = 1
-        -- },
         diagnostics = {
           multiline = 1
         }
       }
+
+    vim.cmd [[ FzfLua register_ui_select ]]
     end,
   },
 }

@@ -1,6 +1,6 @@
 return {
   'stevearc/aerial.nvim',
-  event = { "BufReadPost", "BufNewFile" },
+  event = { 'BufReadPost', 'BufNewFile' },
   opts = {},
   config = function()
     require('aerial').setup {

@@ -4,7 +4,6 @@ return {
     event = 'InsertEnter',
     opts = function()
       local cmp = require 'cmp'
-      local utils = require 'utils'
       return {
         mapping = cmp.mapping.preset.insert {
           ['<Tab>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
@@ -27,20 +26,10 @@ return {
             end,
           },
           { name = 'path' },
-          -- { name = 'buffer' },
-          -- { name = 'luasnip' },
         },
         snippet = {
           expand = function(args)
             vim.snippet.expand(args.body)
-          end,
-        },
-        formatting = {
-          fields = { 'kind', 'abbr', 'menu' },
-          format = function(_, item)
-            item.kind = (utils.lsp_icons[item.kind] or ' ') .. item.kind .. ' '
-            item.menu = '  '
-            return item
           end,
         },
       }
@@ -48,7 +37,6 @@ return {
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-      -- 'saadparwaiz1/cmp_luasnip',
     },
   },
 }

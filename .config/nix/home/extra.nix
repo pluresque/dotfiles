@@ -7,6 +7,11 @@
       enableZshIntegration = true;
     };
 
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     fastfetch = {
       enable = true;
       settings = 

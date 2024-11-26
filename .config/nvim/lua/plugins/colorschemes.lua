@@ -69,6 +69,11 @@ return {
           },
         },
         transparent_background = false,
+        dim_inactive = {
+          enabled = true, -- dims the background color of inactive window
+          shade = 'dark',
+          percentage = 0, -- percentage of the shade to apply to the inactive window
+        },
         show_end_of_buffer = false,
         integration_default = false,
         integrations = {
@@ -89,17 +94,20 @@ return {
         highlight_overrides = {
           all = function(colors)
             return {
+              NormalBg = { bg = colors.base },
               IndentLine = { fg = colors.overlay0 },
               IndentLineCurrent = { fg = '#f9f5d7', bold = true },
               MiniTablineFill = { bg = colors.mantle },
               MiniTablineTabpagesection = { bg = colors.mantle },
               MiniTablineCurrent = { bg = colors.mantle, fg = colors.subtext0 },
+              MiniFilesBorder = { bg = colors.base, fg = colors.text },
               CmpItemMenu = { fg = colors.surface2 },
               CursorLineNr = { fg = colors.text },
-              FloatBorder = { bg = colors.base, fg = colors.surface0 },
+              FloatBorder = { bg = colors.surface2 },
               GitSignsChange = { fg = colors.peach },
               LineNr = { fg = colors.overlay0 },
               LspInfoBorder = { link = 'FloatBorder' },
+              LspSignatureActiveParameter = { bg = colors.surface0 },
               MiniDiffSignAdd = { fg = colors.teal },
               MiniDiffSignChange = { fg = colors.pink },
               MiniDiffSignDelete = { fg = colors.rosewater },
@@ -112,7 +120,7 @@ return {
               StatuslineFileinfo = { fg = colors.overlay0, bg = colors.mantle },
               StatuslineGitInfo = { fg = colors.flamingo, bg = colors.mantle, bold = true },
               StatuslineLSP = { bg = colors.mantle, fg = colors.subtext1, bold = true },
-              NormalFloat = { bg = colors.base },
+              -- NormalFloat = { bg = colors.surface0 },
               Pmenu = { bg = colors.surface0, fg = '' },
               PmenuSel = { bg = colors.mantle, fg = '' },
               VertSplit = { bg = colors.base, fg = colors.surface0 },

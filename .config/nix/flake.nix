@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -12,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
-    nur.url = "github:nix-community/nur";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -25,13 +26,20 @@
     nixpkgs,
     darwin,
     home-manager,
-    nur,
+    nixpkgs-unstable,
     ...
   }: let
     username = "apple";
     useremail = "daniilfedotov@protonmail.com";
     system = "aarch64-darwin";
     hostname = "pluresque";
+
+    overlays = [
+      inputs.neovim-nightly-overlay.overlays.default
+      (final: prev: {
+        unstable = nixpkgs-unstable.legacyPackages.${system};
+      })
+    ];
 
     specialArgs =
       inputs
@@ -49,9 +57,9 @@
         ./modules/apps.nix
         ./modules/fonts.nix
         ./modules/host-users.nix
-
         home-manager.darwinModules.home-manager
         {
+          nixpkgs.overlays = overlays;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = specialArgs;
