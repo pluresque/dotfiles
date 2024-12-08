@@ -2,52 +2,71 @@
 
 {
   home.packages = with pkgs; [
+
     # Languages
     rustup
     zig
     nodejs
+    python311Full
+    dotnetCorePackages.sdk_8_0_3xx
+
+    # Language packages
     nodePackages.prettier
     nodePackages.npm
     nodePackages.yarn
     nodePackages.eslint
-    python311Full
-    dotnetCorePackages.sdk_8_0_3xx
 
-    # Tools
-    git
-    fzf # Fuzzy finder
-    zoxide # Better cd
-    eza # Better ls
-    yt-dlp
+    # Editors
     unstable.neovim
+
+    # Terminal utils
+    eza # Better ls
+    zoxide # Better cd
+    fzf # Fuzzy finder
+    bat # Modern cat
     ripgrep
     fd
-    just
-    tldr
-    mpv
+    just # Task runner
+    exiftool # Metadata viewer
+    tldr # Simplified man pages
+    jq # JSON processor
     zip
     unzip
-    postgresql_16
-    wget
-    curl
-    exiftool # Metadata viewer
+    p7zip
+    rsync
     tree
-    ngrok
-    ffmpeg
-    smartmontools
-    zola
-    zellij
+
+    # Development
+    git
     ctop
     uv
-
-    # DevOps
+    docker
+    kubectl
+    direnv
+    ngrok
     terraform
     ansible
-    kubectl
     kubernetes-helm
     minikube
-    docker
     colima
+
+    # Networking
+    wget
+    curl
+    nmap
+    tcpdump
+
+    # Media
+    yt-dlp
+    mpv
+    ffmpeg
+
+    # System monitoring
+    smartmontools
+
+    postgresql_16
+    zola
+    zellij
 
     # GUI apps
     wezterm

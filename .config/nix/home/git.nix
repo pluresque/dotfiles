@@ -15,13 +15,6 @@
     userName = "pluresque";
     userEmail = useremail;
 
-    includes = [
-      {
-        path = "~/work/.gitconfig";
-        condition = "gitdir:~/work/";
-      }
-    ];
-
     extraConfig = {
       init.defaultBranch = "main";
       push.autoSetupRemote = true;

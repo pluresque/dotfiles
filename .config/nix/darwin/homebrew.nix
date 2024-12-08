@@ -14,7 +14,7 @@
     masApps = {
       # Xcode = 497799835;
       Telegram = 747648890;
-      Klack = 6446206067; 
+      Klack = 6446206067;
     };
 
     taps = [
@@ -23,11 +23,11 @@
     ];
 
     brews = [
-          "ncdu" "texlive" "sshfs"
+          "ncdu" "texlive"
     ];
 
     casks = [
-      "raycast" "tomatobar" "iina" "amethyst" "arc" "macfuse"
+      "raycast" "tomatobar" "iina" "amethyst" "arc"
     ];
   };
 
