@@ -11,16 +11,16 @@
     nodePackages.yarn
     nodePackages.eslint
     python311Full
-    dotnetCorePackages.sdk_8_0_2xx
+    dotnetCorePackages.sdk_8_0_3xx
 
     # Tools
     git
     fzf # Fuzzy finder
     zoxide # Better cd
     eza # Better ls
-    yt-dlp 
+    yt-dlp
     unstable.neovim
-    ripgrep 
+    ripgrep
     fd
     just
     tldr
@@ -38,6 +38,7 @@
     zola
     zellij
     ctop
+    uv
 
     # DevOps
     terraform

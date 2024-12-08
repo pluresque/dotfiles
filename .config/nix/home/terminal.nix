@@ -6,6 +6,7 @@
     local act = wezterm.action
     local config = wezterm.config_builder()
 
+    config.front_end = "WebGpu"
     config.keys = {
             {
                     key = "E",
@@ -79,7 +80,7 @@
             bottom = 0,
     }
 
-    config.color_scheme = "Gruvbox Material (Gogh)"
+    config.color_scheme = "GruvboxDarkHard"
     config.font = wezterm.font("JetBrains Mono")
     config.font_size = 14.6
     config.adjust_window_size_when_changing_font_size = false
