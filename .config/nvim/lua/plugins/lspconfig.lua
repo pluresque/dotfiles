@@ -10,7 +10,6 @@ return {
         ansiblels = {},
         tflint = {},
         bashls = {},
-        jsonls = {},
         yamlls = {
           settings = {
             yaml = {

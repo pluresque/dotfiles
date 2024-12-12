@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  # Fonts
   fonts = {
     packages = with pkgs; [
       # icon fonts

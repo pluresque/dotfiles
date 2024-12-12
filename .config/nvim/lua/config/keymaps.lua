@@ -11,10 +11,6 @@ m('n', 'N', 'Nzzzv', { desc = 'Search Previous', silent = true })
 m('n', 'q', 'b', { noremap = true, desc = 'Go to previous word (start)' })
 m('n', 'Q', 'B', { noremap = true, desc = 'Go to previous word (start, ignoring punctuation)' })
 
--- Jump half pages
-m('n', '=', '<C-u>zz', { noremap = true, silent = true, desc = 'Page up' })
-m('n', '-', '<C-d>zz', { noremap = true, silent = true, desc = 'Page down' })
-
 m('n', '<BS>', 'ciw', { desc = 'Delete word' })
 
 m('n', '<esc>', '<cmd>noh<cr>', { desc = 'Clear search highlight', silent = true })
@@ -52,9 +48,6 @@ m('n', '<C-S-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
 m('n', '<C-S-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
 m('n', '<C-S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
 m('n', '<C-S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
-
--- Explorer
-m({ 'n', 'i' }, '<C-e>', [[<Cmd>lua MiniFiles.open()<CR>]], { silent = true, desc = 'Open File Explorer' })
 
 -- Lazy
 m('n', '<leader>tl', '<cmd>Lazy<cr>', { desc = 'Toggle Lazy' })

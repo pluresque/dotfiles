@@ -69,7 +69,7 @@ local statusline = {
   '%f',
   '%r',
   '%m',
-  '%{%v:lua._statusline_component("git_branch")%}',
+  ' %{%v:lua._statusline_component("git_branch")%}',
   '%=',
   '%{&filetype} ',
   ' %2p%% ',

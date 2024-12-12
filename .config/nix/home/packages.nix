@@ -35,10 +35,14 @@
     p7zip
     rsync
     tree
+    tmux
+
+    # Downloaders
+    gallery-dl
+    yt-dlp
 
     # Development
     git
-    ctop
     uv
     docker
     kubectl
@@ -57,7 +61,6 @@
     tcpdump
 
     # Media
-    yt-dlp
     mpv
     ffmpeg
 

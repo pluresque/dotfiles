@@ -1,15 +1,9 @@
 { pkgs, ... }:
 
-  ###################################################################################
-  #
-  #  macOS's System configuration
-  #
   #  All the configuration options are documented here:
   #    https://daiderd.com/nix-darwin/manual/index.html#sec-options
   #  Incomplete list of macOS `defaults` commands :
   #    https://github.com/yannbertrand/macos-defaults
-  #
-  ###################################################################################
 {
 
   system = {
@@ -25,20 +19,19 @@
     stateVersion = 5;
 
     defaults = {
-      menuExtraClock.Show24Hour = true;  # show 24 hour clock
-      
+      menuExtraClock.Show24Hour = true;
+
       # customize dock
       dock = {
         autohide = true;
-        show-recents = false;  # disable recent apps
-        wvous-tl-corner = 1;  # top-left - Mission Control
-        wvous-tr-corner = 1;  # top-right - Lock Screen
-        wvous-bl-corner = 1;  # bottom-left - Application Windows
-        wvous-br-corner = 1;  # bottom-right - Desktop
+        show-recents = false;
+        wvous-tl-corner = 1;
+        wvous-tr-corner = 1;
+        wvous-bl-corner = 1;
+        wvous-br-corner = 1;
       };
-      
+
       dock.persistent-apps = [
-        "/Applications/Arc.app/"
         "/Applications/Telegram.app/"
         "${pkgs.wezterm}/Applications/WezTerm.app/"
       ];
@@ -47,6 +40,7 @@
       finder = {
         _FXShowPosixPathInTitle = true;  # show full path in finder title
         AppleShowAllExtensions = true;  # show all file extensions
+        AppleShowAllFiles = true;
         FXEnableExtensionChangeWarning = false;  # disable warning when changing file extension
         QuitMenuItem = true;  # enable quit menu item
         ShowPathbar = true;  # show path bar
@@ -70,11 +64,12 @@
         AppleInterfaceStyle = "Dark";  # dark mode
         AppleKeyboardUIMode = 3;  # Mode 3 enables full keyboard control.
         ApplePressAndHoldEnabled = true;  # enable press and hold
+        AppleShowAllFiles = true;
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
         # sets how long it takes before it starts repeating.
         InitialKeyRepeat = 15;  # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
-        # sets how fast it repeats once it starts. 
+        # sets how fast it repeats once it starts.
         KeyRepeat = 3;  # normal minimum is 2 (30 ms), maximum is 120 (1800 ms)
 
         NSAutomaticCapitalizationEnabled = false;  # disable auto capitalization
@@ -146,7 +141,7 @@
       enableKeyMapping = true;  # enable key mapping so that we can use `option` as `control`
       remapCapsLockToControl = false;  # remap caps lock to control, useful for emac users
       remapCapsLockToEscape  = true;   # remap caps lock to escape, useful for vim users
-      swapLeftCommandAndLeftAlt = false;  
+      swapLeftCommandAndLeftAlt = false;
     };
   };
 
@@ -159,10 +154,5 @@
   environment.shells = [
     pkgs.zsh
   ];
-
-  # Set your time zone.
-  # comment this due to the issue:
-  #   https://github.com/LnL7/nix-darwin/issues/359
-  # time.timeZone = "Asia/shanghai";
 
 }

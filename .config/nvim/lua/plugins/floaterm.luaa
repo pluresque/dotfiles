@@ -1,0 +1,34 @@
+return {
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    lazy = true,
+    cmd = {'ToggleTerm', 'TermExec', 'TermSelect'},
+    keys = {
+      {
+        [[<c-\>]],
+        function()
+          require('toggleterm').toggle()
+        end,
+        { desc = 'Toggle terminal' },
+      },
+    },
+    config = function()
+      require('toggleterm').setup {
+        size = 20,
+        open_mapping = [[<c-\>]],
+        direction = 'float',
+        float_opts = {
+          border = 'curved',
+          title_pos = 'left',
+        },
+        winbar = {
+          enabled = true,
+          name_formatter = function(term)
+            return term.name
+          end,
+        },
+      }
+    end,
+  },
+}
