@@ -1,7 +1,6 @@
 return {
   'saghen/blink.cmp',
   lazy = false, -- lazy loading handled internally
-  -- optional: provides snippets for the snippet source
   dependencies = 'rafamadriz/friendly-snippets',
 
   version = 'v0.*',
@@ -12,7 +11,7 @@ return {
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
     -- see the "default configuration" section below for full documentation on how to define
     -- your own keymap.
-    keymap = { preset = 'default' },
+    keymap = { preset = 'super-tab' },
 
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -28,7 +27,7 @@ return {
     -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
       completion = {
-        enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
+        enabled_providers = { 'lsp', 'path', 'snippets' },
       },
     },
 

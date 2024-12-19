@@ -18,9 +18,6 @@ vim.cmd([[
 ]])
 
 vim.o.cursorline = true
--- vim.cmd([[
---   set cursorline=
--- ]])
 
 -- Search and Highlighting
 vim.o.hlsearch = true -- Stop highlighting matches after search is done
@@ -35,6 +32,7 @@ vim.o.number = true -- Show absolute line numbers
 -- vim.o.relativenumber = true -- Show relative line numbers
 vim.o.numberwidth = 4 -- Set the width of the line number column
 vim.o.signcolumn = 'yes:1' -- Show signs in the number column
+vim.o.cmdheight = 0
 
 -- Scrolling and Viewport
 vim.o.scrolloff = 10 -- Keep 10 lines visible above and below the cursor when scrolling

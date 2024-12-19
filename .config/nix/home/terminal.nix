@@ -35,8 +35,8 @@
             },
             { key = "LeftArrow", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
             { key = "RightArrow", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
-            { key = "LeftArrow", mods = "ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
-            { key = "RightArrow", mods = "ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+            -- { key = "LeftArrow", mods = "ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+            -- { key = "RightArrow", mods = "ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
     }
 
     config.hyperlink_rules = {
@@ -73,6 +73,8 @@
 
     config.window_decorations = "RESIZE"
 
+
+    config.hide_tab_bar_if_only_one_tab = true
     config.window_padding = {
             left = 0,
             right = 0,

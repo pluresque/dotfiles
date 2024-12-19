@@ -67,7 +67,7 @@
     # System monitoring
     smartmontools
 
-    postgresql_16
+    postgresql_17
     zola
     zellij
 
