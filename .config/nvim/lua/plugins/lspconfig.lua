@@ -2,71 +2,68 @@ return {
   {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
+    dependencies = { 'saghen/blink.cmp' },
     opts = {
       servers = {
         pyright = {},
         ruff = {},
         rust_analyzer = {},
-        ansiblels = {},
         tflint = {},
-        bashls = {},
         omnisharp = {},
         yamlls = {
           settings = {
             yaml = {
               schemas = {
+                kubernetes = "k8s-*.yaml",
                 ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
-
-                ['../path/relative/to/file.yml'] = '/.github/workflows/*',
-                ['/path/from/root/of/project'] = '/.github/workflows/*',
+                ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
+                ['https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json'] = 'docker-compose*.{yml,yaml}',
+                ['https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json'] = 'argocd-application.yaml',
+                ['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/**/*.{yml,yaml}',
+                ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
+                ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
+                ['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
+                ['http://json.schemastore.org/circleciconfig'] = '.circleci/**/*.{yml,yaml}',
               },
             },
           },
         },
         phpactor = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              runtime = {
+                version = 'LuaJIT',
+              },
+              diagnostics = {
+                globals = { 'vim' },
+              },
+              workspace = {
+                library = {
+                  vim.env.VIMRUNTIME,
+                },
+              },
+            },
+          },
+        },
       },
     },
     config = function(_, opts)
       local lsp_config = require 'lspconfig'
-      local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-      local capabilities = vim.tbl_deep_extend(
-        'force',
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        has_cmp and cmp_nvim_lsp.default_capabilities() or {},
-        opts.capabilities or {}
-      )
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
 
       require('mason').setup {}
       require('mason-lspconfig').setup()
+
       for lsp, config in pairs(opts.servers) do
         local setup_function = lsp_config[lsp] and lsp_config[lsp].setup
         if setup_function then
-          config.capabilities = capabilities
+          config.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
           setup_function(config)
         else
           print('LSP setup function not found for:', lsp)
         end
       end
-
-      lsp_config.lua_ls.setup {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            runtime = {
-              version = 'LuaJIT',
-            },
-            diagnostics = {
-              globals = { 'vim' },
-            },
-            workspace = {
-              library = {
-                vim.env.VIMRUNTIME,
-              },
-            },
-          },
-        },
-      }
 
       local function organize_imports()
         local params = {
@@ -87,7 +84,6 @@ return {
         },
       }
 
-      -- Rust
       lsp_config.rust_analyzer.setup {
         settings = {
           ['rust-analyzer'] = {

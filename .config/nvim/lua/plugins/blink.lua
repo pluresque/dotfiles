@@ -20,24 +20,22 @@ return {
       use_nvim_cmp_as_default = true,
       -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- Adjusts spacing to ensure icons are aligned
-      nerd_font_variant = 'mono'
+      nerd_font_variant = 'mono',
     },
 
     -- default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
-      completion = {
-        enabled_providers = { 'lsp', 'path', 'snippets' },
-      },
+      default = { 'lsp', 'path', 'snippets' },
     },
 
     -- experimental auto-brackets support
     -- completion = { accept = { auto_brackets = { enabled = true } } }
 
     -- experimental signature help support
-    -- signature = { enabled = true }
+    signature = { enabled = true },
   },
   -- allows extending the enabled_providers array elsewhere in your config
   -- without having to redefine it
-  opts_extend = { "sources.completion.enabled_providers" }
+  opts_extend = { 'sources.completion.enabled_providers' },
 }
