@@ -73,17 +73,3 @@ vim.diagnostic.config {
   virtual_text = false,
   update_in_insert = true,
 }
-
-if vim.g.neovide then
-  vim.o.guifont = 'JetBrainsMono Nerd Font:h14'
-  vim.g.neovide_scroll_animation_length = 0.15
-  vim.g.neovide_cursor_animation_length = 0.01
-  vim.g.neovide_padding_top = 0
-  vim.g.neovide_padding_bottom = 0
-  vim.g.neovide_padding_right = 0
-  vim.g.neovide_padding_left = 0
-  vim.g.neovide_show_border = false
-  vim.g.neovide_cursor_animate_command_line = false
-  vim.g.neovide_cursor_smooth_blink = true
-  vim.g.neovide_show_border = false
-end
