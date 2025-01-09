@@ -1,7 +1,7 @@
 return {
   {
     'ibhagwan/fzf-lua',
-    lazy = false,
+    event = 'VeryLazy',
     cmd = 'FzfLua',
     keys = {
       { '<leader><space>', '<cmd>FzfLua files<cr>' },
@@ -19,17 +19,21 @@ return {
     config = function()
       require('fzf-lua').setup {
         winopts = {
-          height = 0.85,
-          width = 0.85,
-          row = 0.35,
-          col = 0.50,
+          -- height = 0.85,
+          -- width = 0.85,
+          -- row = 0.35,
+          -- col = 0.50,
+          fullscreen = true,
+          border = 'none',
+          backdrop = 100,
           preview = {
             default = 'builtin',
-            horizontal = 'right:50%'
+            horizontal = 'right:50%',
+            syntax_limit_b = 1024 * 100
           },
         },
         diagnostics = {
-          multiline = 1
+          multiline = 2
         }
       }
 

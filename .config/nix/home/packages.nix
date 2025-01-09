@@ -6,7 +6,9 @@
     rustup
     zig
     nodejs
-    python311Full
+    python312Full
+    python312Packages.distutils
+    python312Packages.setuptools
     dotnetCorePackages.sdk_8_0_3xx
 
     # Language packages
@@ -14,6 +16,7 @@
     nodePackages.npm
     nodePackages.yarn
     nodePackages.eslint
+    ruff
 
     # Editors
     unstable.neovim
@@ -72,5 +75,6 @@
 
     # GUI apps
     wezterm
+
   ];
 }

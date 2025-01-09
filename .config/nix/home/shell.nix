@@ -7,6 +7,7 @@
     initExtra = ''
       PROMPT=' %B%F{240}λ%f%b '
       RPROMPT='%F{blue}%~%f'
+      source '$(fzf-share)/key-bindings.zsh'
     '';
   };
   

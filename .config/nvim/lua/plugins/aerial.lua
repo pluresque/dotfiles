@@ -1,7 +1,10 @@
 return {
   'stevearc/aerial.nvim',
-  event = { 'BufReadPost', 'BufNewFile' },
+  -- event = { 'BufReadPost', 'BufNewFile' },
   opts = {},
+  keys = {
+    { '<leader>ta', '<cmd>AerialToggle!<CR>', mode = 'n', desc = 'Toggle aerial' },
+  },
   config = function()
     require('aerial').setup {
       on_attach = function(bufnr)
@@ -9,7 +12,6 @@ return {
         vim.keymap.set('n', '+', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
     }
-    vim.keymap.set('n', '<leader>ta', '<cmd>AerialToggle!<CR>')
   end,
   dependencies = {
     'nvim-treesitter/nvim-treesitter',

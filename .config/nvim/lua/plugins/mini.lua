@@ -66,15 +66,13 @@ return {
           trim_right = '>',
         },
         windows = {
-          max_number = math.huge,
+          max_number = 3,
           preview = true,
           width_focus = 30,
           width_nofocus = 15,
           width_preview = 65,
         },
       }
-
     end,
-
   },
 }

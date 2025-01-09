@@ -2,7 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.o.clipboard = 'unnamedplus' -- Sync clipboard with system clipboard
-vim.o.mouse = 'a' -- Enable mouse support in all modes
+vim.o.mouse = ''
 
 vim.o.sessionoptions = 'buffers,curdir,tabpages,winsize,folds'
 
@@ -13,9 +13,7 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.foldopen = ''
-vim.cmd([[
-  set foldtext= 
-]])
+vim.o.foldtext = ''
 
 vim.o.cursorline = true
 

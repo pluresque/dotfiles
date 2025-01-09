@@ -49,14 +49,15 @@ m('n', '<C-S-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
 m('n', '<C-S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
 m('n', '<C-S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
--- Lazy
-m('n', '<leader>tl', '<cmd>Lazy<cr>', { desc = 'Toggle Lazy' })
-
 -- Sessions
 m('n', '<leader>ts', '<cmd>LoadSession<cr>', { desc = 'Load Session' })
 
--- Terminal
-m('t', '<esc>', '<cmd>close<cr>', { desc = 'Enter Normal Mode' })
-
 -- Diagnostics
 m('n', 'xo', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { noremap = true, remap = true })
+
+m('n', '<Leader>q', function()
+  vim.diagnostic.setloclist { open = false }
+  local window = vim.api.nvim_get_current_win()
+  vim.cmd.lwindow()
+  -- vim.api.nvim_set_current_win(window) -- restore focus to window you were editing (delete this if you want to stay in loclist)
+end, { buffer = bufnr })

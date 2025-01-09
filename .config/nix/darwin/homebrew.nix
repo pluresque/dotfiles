@@ -23,7 +23,7 @@
     ];
 
     brews = [
-          "ncdu" "texlive"
+      "texlive"
     ];
 
     casks = [
