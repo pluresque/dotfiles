@@ -1,7 +1,6 @@
 local cmp = {}
 
 --- highlight pattern
--- This has three parts:
 -- 1. the highlight group
 -- 2. text content
 -- 3. special sequence to restore highlight: %*
@@ -54,7 +53,7 @@ function cmp.git_branch()
   branch = success and branch or ''
 
   if branch ~= '' then
-    return hi_pattern:format('GitSignsAdd', '<' .. branch .. '> ')
+    return hi_pattern:format('GitSignsAdd', '[' .. branch .. '] ')
   end
 
   return branch

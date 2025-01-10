@@ -20,14 +20,6 @@ function SessionManager.setup()
     SessionManager.load_session()
   end, {})
 
-  vim.api.nvim_create_user_command('DeleteSession', function(args)
-    SessionManager.delete_session(args.args)
-  end, { nargs = 1 })
-
-  vim.api.nvim_create_user_command('ListSessions', function()
-    SessionManager.list_sessions()
-  end, {})
-
   local group_id = vim.api.nvim_create_augroup('SessionAutosave', { clear = true })
   vim.api.nvim_create_autocmd('VimLeavePre', {
     group = group_id,
@@ -78,48 +70,6 @@ function SessionManager.load_session()
   else
     print('Session file does not exist: ' .. session_file)
   end
-end
-
-function SessionManager.delete_session(name)
-  local session_file = get_session_directory() .. name .. '.vim'
-  if vim.fn.delete(session_file) == 0 then
-    print('Session deleted: ' .. session_file)
-  else
-    print('Failed to delete session: ' .. session_file)
-  end
-end
-
-function SessionManager.list_sessions()
-  ensure_session_directory()
-  local session_dir = get_session_directory()
-  local sessions = vim.fn.globpath(session_dir, '*.vim', 0, 1)
-
-  local lines = { 'Available sessions:' }
-  for _, session in ipairs(sessions) do
-    table.insert(lines, vim.fn.fnamemodify(session, ':t:r'))
-  end
-
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-
-  local width = 60
-  local height = #lines
-  local row = math.floor((vim.o.lines - height) / 2)
-  local col = math.floor((vim.o.columns - width) / 2)
-
-  local opts = {
-    relative = 'editor',
-    width = width,
-    height = height,
-    row = row,
-    col = col,
-    style = 'minimal',
-    border = 'rounded',
-  }
-
-  local win = vim.api.nvim_open_win(buf, true, opts)
-
-  vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':close<CR>', { noremap = true, silent = true })
 end
 
 SessionManager.setup()

@@ -15,8 +15,6 @@ vim.o.foldenable = true
 vim.o.foldopen = ''
 vim.o.foldtext = ''
 
-vim.o.cursorline = true
-
 -- Search and Highlighting
 vim.o.hlsearch = true -- Stop highlighting matches after search is done
 vim.o.ignorecase = true -- Ignore case when searching (use `\C` to override)
@@ -31,6 +29,7 @@ vim.o.number = true -- Show absolute line numbers
 vim.o.numberwidth = 4 -- Set the width of the line number column
 vim.o.signcolumn = 'yes:1' -- Show signs in the number column
 vim.o.cmdheight = 0
+vim.o.cursorline = true
 
 -- Scrolling and Viewport
 vim.o.scrolloff = 10 -- Keep 10 lines visible above and below the cursor when scrolling
