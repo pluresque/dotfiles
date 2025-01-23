@@ -1,6 +1,5 @@
 return {
   'stevearc/aerial.nvim',
-  -- event = { 'BufReadPost', 'BufNewFile' },
   opts = {},
   keys = {
     { '<leader>ta', '<cmd>AerialToggle!<CR>', mode = 'n', desc = 'Toggle aerial' },

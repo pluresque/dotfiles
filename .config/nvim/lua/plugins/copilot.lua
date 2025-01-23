@@ -7,14 +7,14 @@ return {
       suggestion = {
         auto_trigger = true,
         hide_during_completion = true,
-      },
-      keymap = {
-        -- accept = '<c-y>',
-        -- accept_word = false,
-        accept_line = '<C-y>',
-        -- next = '<M-]>',
-        -- prev = '<M-[>',
-        -- dismiss = '<C-]>',
+        keymap = {
+          accept = '<c-y>',
+          -- accept_word = false,
+          -- accept_line = '<M-]>',
+          -- next = '<M-]>',
+          -- prev = '<M-[>',
+          -- dismiss = '<C-]>',
+        },
       },
     }
   end,

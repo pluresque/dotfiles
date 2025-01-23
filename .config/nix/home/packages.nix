@@ -17,6 +17,13 @@
     nodePackages.yarn
     nodePackages.eslint
     ruff
+    pyright
+    typescript-language-server
+    lua-language-server
+    hadolint
+    omnisharp-roslyn
+    yaml-language-server
+    phpactor
 
     # Editors
     unstable.neovim
@@ -38,6 +45,8 @@
     rsync
     tree
     tmux
+    pass
+    qemu
 
     # Downloaders
     gallery-dl
@@ -75,6 +84,5 @@
 
     # GUI apps
     wezterm
-
   ];
 }

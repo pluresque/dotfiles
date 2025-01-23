@@ -8,8 +8,13 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+             #
+             # nixpkgs.url = "github:NixOS/nixpkgs/NIXPKGS-BRANCH";
+             # nix-darwin.url = "github:LnL7/nix-darwin/NIX-DARWIN-BRANCH";
+             # nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     darwin = {
-      url = "github:lnl7/nix-darwin";
+      url = "github:lnl7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 

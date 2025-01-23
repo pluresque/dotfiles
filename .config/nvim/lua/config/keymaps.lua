@@ -37,12 +37,6 @@ m('n', '<S-Down>', ':m .+1<CR>==', { noremap = true, silent = true })
 --- Buffers
 m({ 'n' }, '<leader>bd', '<cmd>bd<cr>', { desc = 'Delete Buffer' })
 
---- Windows
-m('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
-m('n', '<C-j>', '<C-w>j', { desc = 'Go to Lower Window', remap = true })
-m('n', '<C-k>', '<C-w>k', { desc = 'Go to Upper Window', remap = true })
-m('n', '<C-l>', '<C-w>l', { desc = 'Go to Right Window', remap = true })
-
 -- Resize window using <ctrl> arrow keys
 m('n', '<C-S-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
 m('n', '<C-S-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })

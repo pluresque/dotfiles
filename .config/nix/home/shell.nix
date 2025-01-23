@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -7,7 +7,8 @@
     initExtra = ''
       PROMPT=' %B%F{240}λ%f%b '
       RPROMPT='%F{blue}%~%f'
-      source '$(fzf-share)/key-bindings.zsh'
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      source <(fzf --zsh)
     '';
   };
   

@@ -48,7 +48,7 @@ vim.o.splitbelow = true -- Split windows open below the current window
 vim.o.splitright = true -- Split windows open to the right of the current window
 
 -- User Interface
-vim.o.showtabline = 2 -- Always show tabline
+vim.o.showtabline = 1 -- Always show tabline
 vim.o.laststatus = 3 -- Global status line
 vim.o.termguicolors = true -- Enable 24-bit RGB color in the TUI
 
@@ -64,8 +64,6 @@ vim.o.showbreak = '↪ '
 vim.o.completeopt = 'menu,menuone,popup,noselect' -- Customize completion options
 -- International Input
 vim.o.iminsert = 0 -- Disable IME (Input Method Editor) in insert mode
-
-vim.o.showtabline = 0
 
 -- Diagnostics
 vim.diagnostic.config {

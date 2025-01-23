@@ -1,9 +1,9 @@
 vim.loader.enable()
 
-require 'config.options'  -- General Options
-require 'config.lazy'     -- Package Manager
-require 'config.autocmds' -- Autocommands
-require 'config.keymaps'  -- Keymaps
+require 'config.options'
+require 'config.lazy'
+require 'config.autocmds'
+require 'config.keymaps'
 
-require 'lib.sessions'    -- Session Manager
+require 'lib.sessions'
 require 'lib.statusline'

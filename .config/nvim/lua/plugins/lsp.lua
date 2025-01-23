@@ -62,9 +62,6 @@ return {
       local lsp_config = require 'lspconfig'
       local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-      require('mason').setup {}
-      require('mason-lspconfig').setup()
-
       for lsp, config in pairs(opts.servers) do
         local setup_function = lsp_config[lsp] and lsp_config[lsp].setup
         if setup_function then
@@ -94,12 +91,5 @@ return {
         },
       }
     end,
-  },
-  {
-    'williamboman/mason.nvim',
-    cmd = { 'Mason', 'MasonInstall', 'MasonInstallAll', 'MasonUpdate' },
-    dependencies = {
-      { 'williamboman/mason-lspconfig.nvim' },
-    },
   },
 }
