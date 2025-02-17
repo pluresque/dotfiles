@@ -27,7 +27,7 @@
     ];
 
     casks = [
-      "raycast" "tomatobar" "iina" "amethyst" "arc"
+      "raycast" "tomatobar" "iina" "amethyst"
     ];
   };
 

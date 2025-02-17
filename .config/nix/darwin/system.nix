@@ -33,7 +33,6 @@
 
       dock.persistent-apps = [
         "/Applications/Telegram.app/"
-        "${pkgs.wezterm}/Applications/WezTerm.app/"
       ];
 
       # customize finder

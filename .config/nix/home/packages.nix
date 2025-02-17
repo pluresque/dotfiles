@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+
     # Languages
     rustup
     zig
@@ -10,12 +11,10 @@
     python312Packages.distutils
     python312Packages.setuptools
     dotnetCorePackages.sdk_8_0_3xx
-
-    # Language packages
-    nodePackages.prettier
     nodePackages.npm
     nodePackages.yarn
-    nodePackages.eslint
+
+    # LSPs, Linters & Formatters
     ruff
     pyright
     typescript-language-server
@@ -24,6 +23,8 @@
     omnisharp-roslyn
     yaml-language-server
     phpactor
+    nodePackages.prettier
+    nodePackages.eslint
 
     # Editors
     unstable.neovim
@@ -31,10 +32,10 @@
     # Terminal utils
     eza # Better ls
     zoxide # Better cd
+    fd # Better find
     fzf # Fuzzy finder
     bat # Modern cat
     ripgrep
-    fd
     just # Task runner
     exiftool # Metadata viewer
     tldr # Simplified man pages
@@ -45,10 +46,7 @@
     rsync
     tree
     tmux
-    pass
     qemu
-
-    # Downloaders
     gallery-dl
     yt-dlp
 
@@ -64,25 +62,24 @@
     kubernetes-helm
     minikube
     colima
+    packer
+    talosctl
+    postgresql_17
+    zola
 
     # Networking
-    wget
     curl
+    wget
     nmap
     tcpdump
 
     # Media
     mpv
     ffmpeg
+    imagemagick
 
     # System monitoring
     smartmontools
 
-    postgresql_17
-    zola
-    zellij
-
-    # GUI apps
-    wezterm
   ];
 }

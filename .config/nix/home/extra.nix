@@ -4,6 +4,19 @@
   programs = {
     fzf.enable = true;
 
+    ghostty = {
+      enableZshIntegration = true;
+      clearDefaultKeybinds = true;
+      installVimSyntax = true;
+      settings = {
+        window-decoration =  false;
+        window-padding-x = 0;
+        window-padding-y = 0;
+        theme = "gruvbox-material";
+        font-feature = "-liga -calt -dlig";
+      };
+    };
+
     zoxide = {
       enable = true;
       enableZshIntegration = true;
@@ -44,35 +57,5 @@
           ];
         };
       };
-
-    tmux = {
-      enable = true;
-      # shortcut = "a";
-      prefix = "C-a";
-      sensibleOnTop = false;
-      # aggressiveResize = true; -- Disabled to be iTerm-friendly
-      baseIndex = 1;
-      newSession = true;
-      # Stop tmux+escape craziness.
-      escapeTime = 0;
-
-      plugins = with pkgs; [
-        tmuxPlugins.better-mouse-mode
-      ];
-
-      extraConfig = ''
-        set -gu default-command
-        set -g default-shell "$SHELL"
-
-        # Mouse works as expected
-        set-option -g mouse on
-        # easy-to-remember split pane commands
-        bind | split-window -h -c "#{pane_current_path}"
-        bind - split-window -v -c "#{pane_current_path}"
-        bind c new-window -c "#{pane_current_path}"
-      '';
-    };
-
-
   };
 }
