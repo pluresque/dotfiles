@@ -2,17 +2,16 @@
 
 {
   home.packages = with pkgs; [
-
     # Languages
-    rustup
-    zig
-    nodejs
     python312Full
     python312Packages.distutils
     python312Packages.setuptools
-    dotnetCorePackages.sdk_8_0_3xx
+    nodejs
     nodePackages.npm
     nodePackages.yarn
+    dotnetCorePackages.sdk_8_0_3xx
+    rustup
+    zig
 
     # LSPs, Linters & Formatters
     ruff
@@ -22,14 +21,16 @@
     hadolint
     omnisharp-roslyn
     yaml-language-server
-    phpactor
+    bash-language-server
+    helm-ls
+    gopls
     nodePackages.prettier
     nodePackages.eslint
 
     # Editors
     unstable.neovim
 
-    # Terminal utils
+    # Utils
     eza # Better ls
     zoxide # Better cd
     fd # Better find
@@ -47,8 +48,8 @@
     tree
     tmux
     qemu
-    gallery-dl
-    yt-dlp
+    zellij
+    cloc
 
     # Development
     git
@@ -77,9 +78,11 @@
     mpv
     ffmpeg
     imagemagick
+    gallery-dl
+    yt-dlp
 
     # System monitoring
     smartmontools
-
+    htop
   ];
 }

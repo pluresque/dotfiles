@@ -4,18 +4,19 @@
   programs = {
     fzf.enable = true;
 
-    ghostty = {
-      enableZshIntegration = true;
-      clearDefaultKeybinds = true;
-      installVimSyntax = true;
-      settings = {
-        window-decoration =  false;
-        window-padding-x = 0;
-        window-padding-y = 0;
-        theme = "gruvbox-material";
-        font-feature = "-liga -calt -dlig";
-      };
-    };
+    # ghostty = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    #   clearDefaultKeybinds = true;
+    #   installVimSyntax = true;
+    #   settings = {
+    #     window-decoration =  false;
+    #     window-padding-x = 0;
+    #     window-padding-y = 0;
+    #     theme = "gruvbox-material";
+    #     font-feature = "-liga -calt -dlig";
+    #   };
+    # };
 
     zoxide = {
       enable = true;

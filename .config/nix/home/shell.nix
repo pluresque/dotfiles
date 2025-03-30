@@ -15,11 +15,9 @@
   home.shellAliases = {
     k = "kubectl";
     v = "nvim";
-    d = "docker";
+    vim = "nvim";
     ls = "eza --long";
     python = "python3";
-    nixswitch = "darwin-rebuild switch --flake ~/.config/nix/.#";
-    nixclean = "nix-env --delete-generations old";
     cd = "z";
     cdi = "zi";
     neofetch = "fastfetch";
