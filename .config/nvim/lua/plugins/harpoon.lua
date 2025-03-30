@@ -1,7 +1,6 @@
 return {
   {
     'ThePrimeagen/harpoon',
-    lazy = true,
     keys = {
       {
         '<leader>a',

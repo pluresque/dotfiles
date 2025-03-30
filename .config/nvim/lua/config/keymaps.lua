@@ -51,7 +51,7 @@ m('n', 'xo', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { nor
 
 m('n', '<Leader>q', function()
   vim.diagnostic.setloclist { open = false }
-  local window = vim.api.nvim_get_current_win()
+  -- local window = vim.api.nvim_get_current_win()
   vim.cmd.lwindow()
   -- vim.api.nvim_set_current_win(window) -- restore focus to window you were editing (delete this if you want to stay in loclist)
 end, { buffer = bufnr })

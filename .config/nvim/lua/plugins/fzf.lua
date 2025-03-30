@@ -25,11 +25,12 @@ return {
           preview = {
             default = 'builtin',
             horizontal = 'right:50%',
-            syntax_limit_b = 1024 * 100
+            syntax_limit_b = 1024 * 100,
+            border = 'none'
           },
         },
         diagnostics = {
-          multiline = 2
+          multiline = 1
         }
       }
 

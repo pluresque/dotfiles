@@ -1,7 +1,6 @@
 return {
   {
     'NeogitOrg/neogit',
-    enabled = true,
     cmd = 'Neogit',
     keys = {
       {

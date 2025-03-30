@@ -2,6 +2,7 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
+    enabled = false,
     event = 'VeryLazy',
     priority = 1000,
     config = function()
