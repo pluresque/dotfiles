@@ -15,7 +15,7 @@
 
     # LSPs, Linters & Formatters
     ruff
-    pyright
+    basedpyright
     typescript-language-server
     lua-language-server
     hadolint

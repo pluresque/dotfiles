@@ -26,11 +26,26 @@ return {
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      -- Better buffer management
       require('mini.bufremove').setup()
+
+      -- [ + upper-suffix : go first.
+      -- [ + lower-suffix : go backward.
+      -- ] + lower-suffix : go forward.
+      -- ] + upper-suffix : go last.
+      -- Buffer: [B [b ]b ]B
+      -- Comment block: [C [c ]c ]C
+      -- Conflict marker: [X [x ]x ]X
+      -- Diagnostic: [D [d ]d ]D
+      -- Indent change: [I [i ]i ]I
       require('mini.bracketed').setup()
+
+      -- Show changed lines in the sign column
       require('mini.diff').setup()
       require('mini.git').setup()
 
+      -- Highlight FIXME and TODO in comments, as well as hex colors (e.g. #aabbcc)
       local hipatterns = require 'mini.hipatterns'
 
       hipatterns.setup {
