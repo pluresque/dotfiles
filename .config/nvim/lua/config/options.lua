@@ -71,4 +71,30 @@ vim.diagnostic.config {
   update_in_insert = true,
 }
 
--- vim.cmd([[colorscheme retrobox]])
+-- Abbreviations
+local command_abbrevs = {
+  W = 'w',
+  Wa = 'wa',
+  WA = 'wa',
+  wA = 'wa',
+  wq = 'wq',
+  Wq = 'wq',
+  WQ = 'wq',
+  wQ = 'wq',
+  Q = 'q',
+  qa = 'qa',
+  Qa = 'qa',
+  QA = 'qa',
+  qA = 'qa',
+  Wqa = 'wqa',
+  WQa = 'wqa',
+  WQA = 'wqa',
+  wQa = 'wqa',
+  wQA = 'wqa',
+  wqA = 'wqa',
+  H = 'h'
+}
+
+for lhs, rhs in pairs(command_abbrevs) do
+  vim.cmd('cnoreabbrev ' .. lhs .. ' ' .. rhs)
+end

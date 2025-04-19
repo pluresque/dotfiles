@@ -39,7 +39,6 @@ require('lazy').setup('plugins', {
         'optwin',
         -- 'compiler',
         'bugreport',
-        -- 'editorconfig',
         'osc52',
         'man',
         'shada',

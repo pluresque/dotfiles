@@ -45,6 +45,14 @@ return {
       require('mini.diff').setup()
       require('mini.git').setup()
 
+      require('mini.notify').setup({
+        window = {
+          config = {
+            border = 'none',
+          },
+        },
+      })
+
       -- Highlight FIXME and TODO in comments, as well as hex colors (e.g. #aabbcc)
       local hipatterns = require 'mini.hipatterns'
 
