@@ -5,7 +5,7 @@
   ...
 }: {
   home.activation.removeExistingGitconfig = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
-    rm -f ~/.gitconfig
+    rm -f ~/.gitconfig ~/.config/git/ignore
   '';
 
   programs.git = {
@@ -23,6 +23,8 @@
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_rsa.pub";
     };
+
+    ignores = [ ".DS_Store" "thumbs.db" "CLAUDE.md" "GEMINI.md" ".claude" ];
 
     delta = {
       enable = true;

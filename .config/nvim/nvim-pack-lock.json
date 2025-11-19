@@ -1,0 +1,55 @@
+{
+  "plugins": {
+    "aerial": {
+      "rev": "5e687b5",
+      "src": "https://github.com/stevearc/aerial.nvim"
+    },
+    "blink-cmp": {
+      "rev": "40380e7",
+      "src": "https://github.com/saghen/blink.cmp"
+    },
+    "diffview": {
+      "rev": "4516612",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
+    "flash": {
+      "rev": "fcea7ff",
+      "src": "https://github.com/folke/flash.nvim"
+    },
+    "friendly-snippets": [],
+    "gruvbox-material": {
+      "rev": "89b8d86",
+      "src": "https://github.com/sainnhe/gruvbox-material"
+    },
+    "mini": {
+      "rev": "7d6fcfd",
+      "src": "https://github.com/echasnovski/mini.nvim"
+    },
+    "mini.surround": {
+      "rev": "88c5229",
+      "src": "https://github.com/echasnovski/mini.surround"
+    },
+    "neogit": [],
+    "plenary": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "rustaceanvim": {
+      "rev": "ccd8f99",
+      "src": "https://github.com/mrcjkb/rustaceanvim"
+    },
+    "undotree": {
+      "rev": "0f1c981",
+      "src": "https://github.com/mbbill/undotree"
+    },
+    "vim-undotree": {
+      "rev": "0f1c981",
+      "src": "https://github.com/mbbill/undotree"
+    },
+    "vim-wakatime": {
+      "rev": "d7973b1",
+      "src": "https://github.com/wakatime/vim-wakatime"
+    },
+    "wakatime": []
+  }
+}

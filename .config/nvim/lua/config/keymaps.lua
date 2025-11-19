@@ -42,6 +42,7 @@ m('n', '<S-Down>', ':m .+1<CR>==', { desc = 'Move line down', silent = true, nor
 
 -- Buffers
 m('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Delete current buffer', silent = true, noremap = true })
+m('n', '<leader>ив', '<cmd>bd<cr>', { desc = 'Delete current buffer', silent = true, noremap = true })
 
 -- Window resizing
 m('n', '<C-S-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height', silent = true, noremap = true })
@@ -51,6 +52,7 @@ m('n', '<C-S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window w
 
 -- Sessions
 m('n', '<leader>ts', '<cmd>LoadSession<cr>', { desc = 'Load session', silent = true, noremap = true })
+m('n', '<leader>еі', '<cmd>LoadSession<cr>', { desc = 'Load session', silent = true, noremap = true })
 
 -- Diagnostics
 m('n', 'xo', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', {
@@ -58,6 +60,8 @@ m('n', 'xo', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', {
   silent = true,
   noremap = true,
 })
+
+vim.keymap.set('n', '<leader>cc', '<cmd>ClaudeCode<CR>', { desc = 'Toggle Claude Code' })
 
 m('n', '<Leader>q', function()
   vim.diagnostic.setloclist { open = false }

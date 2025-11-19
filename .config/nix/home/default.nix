@@ -12,7 +12,7 @@
     username = username;
     homeDirectory = "/Users/${username}";
 
-    stateVersion = "24.11";
+    stateVersion = "25.05";
 
     sessionVariables = {
       PAGER = "less";

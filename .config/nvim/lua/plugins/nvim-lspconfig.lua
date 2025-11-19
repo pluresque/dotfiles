@@ -5,7 +5,7 @@ return {
     dependencies = { 'saghen/blink.cmp' },
     opts = {
       servers = {
-        basedpyright = {},
+        pyright = {},
         ruff = {},
         omnisharp = {},
         yamlls = {
@@ -49,29 +49,24 @@ return {
       },
     },
     config = function(_, opts)
-      local lsp_config = require 'lspconfig'
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      for lsp, config in pairs(opts.servers) do
-        local setup_function = lsp_config[lsp] and lsp_config[lsp].setup
-        if setup_function then
-          config.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-          setup_function(config)
-        else
-          print('LSP setup function not found for:', lsp)
-        end
+      -- Setup all servers using vim.lsp.config()
+      for server_name, config in pairs(opts.servers) do
+        config.capabilities = capabilities
+        vim.lsp.config(server_name, config)
       end
 
+      -- Setup TypeScript with organize imports command
       local function organize_imports()
         local params = {
           command = '_typescript.organizeImports',
           arguments = { vim.api.nvim_buf_get_name(0) },
-          title = '',
         }
-        vim.lsp.buf.execute_command(params)
+        vim.lsp.buf_request(0, 'workspace/executeCommand', params)
       end
 
-      lsp_config.ts_ls.setup {
+      vim.lsp.config('ts_ls', {
         capabilities = capabilities,
         commands = {
           OrganizeImports = {
@@ -79,8 +74,22 @@ return {
             description = 'Organize Imports',
           },
         },
-      }
+      })
 
+      -- Enable servers for current buffer when appropriate
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('lsp-enable', { clear = true }),
+        callback = function()
+          -- Enable all configured servers
+          for server_name, _ in pairs(opts.servers) do
+            vim.lsp.enable(server_name)
+          end
+          -- Also enable ts_ls
+          vim.lsp.enable('ts_ls')
+        end,
+      })
+
+      -- LspAttach autocmd for keymaps and features
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
@@ -89,24 +98,27 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          local function client_supports_method(client, method, bufnr)
-            if vim.fn.has 'nvim-0.11' == 1 then
-              return client:supports_method(method, bufnr)
-            else
-              return client.supports_method(method, { bufnr = bufnr })
-            end
-          end
-
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+          -- Document highlight
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            vim.api.nvim_create_autocmd('CursorHold', {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.document_highlight,
+            })
+            vim.api.nvim_create_autocmd('CursorHoldI', {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
 
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            vim.api.nvim_create_autocmd('CursorMoved', {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.clear_references,
+            })
+            vim.api.nvim_create_autocmd('CursorMovedI', {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
@@ -121,15 +133,25 @@ return {
             })
           end
 
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+          -- Inlay hints toggle
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
 
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_codeLens, event.buf) then
+          -- Code lens
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, event.buf) then
             vim.lsp.codelens.refresh()
-            vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+            vim.api.nvim_create_autocmd("BufEnter", {
+              buffer = event.buf,
+              callback = vim.lsp.codelens.refresh,
+            })
+            vim.api.nvim_create_autocmd("CursorHold", {
+              buffer = event.buf,
+              callback = vim.lsp.codelens.refresh,
+            })
+            vim.api.nvim_create_autocmd("InsertLeave", {
               buffer = event.buf,
               callback = vim.lsp.codelens.refresh,
             })

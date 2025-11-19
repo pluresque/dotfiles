@@ -5,6 +5,7 @@ return {
     config = function()
       require('lint').linters_by_ft = {
         dockerfile = { 'hadolint' },
+        -- python = { 'mypy' },
       }
 
       vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePost' }, {

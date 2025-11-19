@@ -1,7 +1,7 @@
 local bufnr = vim.api.nvim_get_current_buf()
 vim.keymap.set(
-  "n", 
-  "<leader>a", 
+  "n",
+  "<leader>a",
   function()
     vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
     -- or vim.lsp.buf.codeAction() if you don't want grouping.
@@ -9,10 +9,10 @@ vim.keymap.set(
   { silent = true, buffer = bufnr }
 )
 vim.keymap.set(
-  "n", 
+  "n",
   "K",
   function()
-    vim.cmd.RustLsp({'hover', 'actions'})
+    vim.cmd.RustLsp({ 'hover', 'actions' })
   end,
   { silent = true, buffer = bufnr }
 )

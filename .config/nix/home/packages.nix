@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    # Languages
     python312Full
     python312Packages.distutils
     python312Packages.setuptools
@@ -12,23 +11,22 @@
     dotnetCorePackages.sdk_8_0_3xx
     rustup
     zig
+    deno
+    bun
 
-    # LSPs, Linters & Formatters
     ruff
-    basedpyright
+    pyright
     typescript-language-server
     lua-language-server
-    hadolint
     omnisharp-roslyn
     yaml-language-server
-    bash-language-server
     helm-ls
     gopls
     nodePackages.prettier
     nodePackages.eslint
 
     # Editors
-    unstable.neovim
+    neovim
 
     # Utils
     eza # Better ls
@@ -50,6 +48,9 @@
     qemu
     zellij
     cloc
+    onefetch
+    ncdu
+    pfetch
 
     # Development
     git
@@ -67,6 +68,9 @@
     talosctl
     postgresql_17
     zola
+    redis
+    awscli
+    claude-code
 
     # Networking
     curl

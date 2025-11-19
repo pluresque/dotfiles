@@ -4,7 +4,7 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
-    initExtra = ''
+    initContent = ''
       PROMPT=' %B%F{240}λ%f%b '
       RPROMPT='%F{blue}%~%f'
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
