@@ -1,55 +1,80 @@
 {
   "plugins": {
     "aerial": {
-      "rev": "5e687b5",
+      "rev": "7a6a427",
       "src": "https://github.com/stevearc/aerial.nvim"
     },
     "blink-cmp": {
-      "rev": "40380e7",
+      "rev": "85666c5",
       "src": "https://github.com/saghen/blink.cmp"
     },
-    "diffview": {
-      "rev": "4516612",
-      "src": "https://github.com/sindrets/diffview.nvim"
+    "codediff": {
+      "rev": "7e5cda2",
+      "src": "https://github.com/esmuellert/codediff.nvim"
+    },
+    "conform": {
+      "rev": "c2526f1",
+      "src": "https://github.com/stevearc/conform.nvim"
     },
     "flash": {
       "rev": "fcea7ff",
       "src": "https://github.com/folke/flash.nvim"
     },
-    "friendly-snippets": [],
+    "fzf-lua": {
+      "rev": "739330f",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
     "gruvbox-material": {
-      "rev": "89b8d86",
+      "rev": "790afe9",
       "src": "https://github.com/sainnhe/gruvbox-material"
     },
+    "kulala": {
+      "rev": "6656c9d",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
+    },
     "mini": {
-      "rev": "7d6fcfd",
+      "rev": "4e61631",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
-    "mini.surround": {
-      "rev": "88c5229",
-      "src": "https://github.com/echasnovski/mini.surround"
+    "neogit": {
+      "rev": "75ca811d",
+      "src": "https://github.com/NeogitOrg/neogit"
     },
-    "neogit": [],
+    "nui": {
+      "rev": "de74099",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-lint": {
+      "rev": "bcd1a44",
+      "src": "https://github.com/mfussenegger/nvim-lint"
+    },
+    "nvim-lspconfig": {
+      "rev": "44acfe8",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "9f2dad22",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "peek": {
+      "rev": "5820d93",
+      "src": "https://github.com/toppair/peek.nvim"
+    },
     "plenary": {
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "rustaceanvim": {
-      "rev": "ccd8f99",
+      "rev": "bb57d9a",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "undotree": {
-      "rev": "0f1c981",
-      "src": "https://github.com/mbbill/undotree"
-    },
-    "vim-undotree": {
-      "rev": "0f1c981",
+      "rev": "d8f9908",
       "src": "https://github.com/mbbill/undotree"
     },
     "vim-wakatime": {
       "rev": "d7973b1",
       "src": "https://github.com/wakatime/vim-wakatime"
-    },
-    "wakatime": []
+    }
   }
 }

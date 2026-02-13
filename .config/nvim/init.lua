@@ -5,6 +5,3 @@ require 'config.keymaps'
 require 'lib.sessions'
 require 'config.autocmds'
 require 'config.plugins'
-
-
-require 'config.lazy'

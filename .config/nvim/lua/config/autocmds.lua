@@ -29,7 +29,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'help',
     'lspinfo',
     'checkhealth',
-    'lazy',
     'neogitstatus',
   },
   callback = function(event)
