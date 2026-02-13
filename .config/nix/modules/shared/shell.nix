@@ -9,6 +9,25 @@
       RPROMPT='%F{blue}%~%f'
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       source <(fzf --zsh)
+
+      # SSH with terminal coloring per environment
+      ssh() {
+        case "$1" in
+          prod|production)
+            printf '\033]11;#3d1515\007'
+            command ssh "$@"
+            printf '\033]11;#1a1b26\007'
+            ;;
+          staging)
+            printf '\033]11;#3d2915\007'
+            command ssh "$@"
+            printf '\033]11;#1a1b26\007'
+            ;;
+          *)
+            command ssh "$@"
+            ;;
+        esac
+      }
     '';
   };
 

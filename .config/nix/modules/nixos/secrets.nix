@@ -5,12 +5,11 @@
     ];
 
     secrets = {
-      # Add secrets here when agenix is configured
       # Example:
       # "my-secret" = {
       #   symlink = false;
+      #   file = ../../secrets/my-secret.age;
       #   path = "/home/pluresque/.config/my-secret";
-      #   file = "${secrets}/my-secret.age";
       #   mode = "600";
       #   owner = "pluresque";
       #   group = "wheel";

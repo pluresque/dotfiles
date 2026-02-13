@@ -27,9 +27,23 @@
 
     shell = "${pkgs.zsh}/bin/zsh";
 
-    plugins = with pkgs;
-      [
+    plugins = with pkgs; [
         tmuxPlugins.better-mouse-mode
+        tmuxPlugins.yank
+        {
+          plugin = tmuxPlugins.resurrect;
+          extraConfig = ''
+            set -g @resurrect-capture-pane-contents 'on'
+            set -g @resurrect-pane-contents-area 'visible'
+          '';
+        }
+        {
+          plugin = tmuxPlugins.continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+            set -g @continuum-save-interval '5'
+          '';
+        }
       ];
 
     extraConfig = ''

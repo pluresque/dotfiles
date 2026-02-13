@@ -5,16 +5,13 @@
     ];
 
     secrets = {
-      # Add secrets here when agenix is configured
-      # Example:
-      # "my-secret" = {
-      #   symlink = true;
-      #   path = "/Users/apple/.config/my-secret";
-      #   file = "${secrets}/my-secret.age";
-      #   mode = "600";
-      #   owner = "apple";
-      #   group = "staff";
-      # };
+      "openai-key" = {
+        file = ../../secrets/openai-key.age;
+        path = "/Users/apple/.config/openai-key";
+        mode = "600";
+        owner = "apple";
+        group = "staff";
+      };
     };
   };
 }
