@@ -12,7 +12,7 @@
   };
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/Code/dotfiles/.config/nvim";
+    "${config.home.homeDirectory}/Code/dotfiles/nvim";
 
   programs.home-manager.enable = true;
 }
