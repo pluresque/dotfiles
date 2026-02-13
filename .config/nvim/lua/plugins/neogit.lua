@@ -14,7 +14,7 @@ return {
 
     dependencies = {
       'nvim-lua/plenary.nvim',
-      "sindrets/diffview.nvim",
+      -- "sindrets/diffview.nvim",
     },
 
     config = function()

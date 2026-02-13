@@ -2,7 +2,7 @@ vim.pack.add({
   { src = "https://github.com/sainnhe/gruvbox-material", name = "gruvbox-material" },
   { src = "https://github.com/echasnovski/mini.nvim",    name = "mini" },
   -- { src = "https://github.com/mbbill/undotree", name = "undotree" },
-  { src = "https://github.com/wakatime/vim-wakatime",    name = "vim-wakatime" },
+  -- { src = "https://github.com/wakatime/vim-wakatime",    name = "vim-wakatime" },
   { src = "https://github.com/mrcjkb/rustaceanvim" },
   -- { src = "https://github.com/NeogitOrg/neogit", name = "neogit" },
   -- { src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary" },
@@ -97,7 +97,8 @@ miniicons.mock_nvim_web_devicons()
 require('mini.files').setup {
   content = {
     filter = function(entry)
-      return entry.name ~= '.DS_Store' and entry.name ~= '.git' and entry.name ~= 'node_modules'
+      return entry.name ~= '.DS_Store' and entry.name ~= '.git' and entry.name ~= 'node_modules' and
+      entry.name ~= '__pycache__'
     end,
   },
   mappings = {

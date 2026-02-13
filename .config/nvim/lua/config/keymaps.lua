@@ -61,8 +61,6 @@ m('n', 'xo', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', {
   noremap = true,
 })
 
-vim.keymap.set('n', '<leader>cc', '<cmd>ClaudeCode<CR>', { desc = 'Toggle Claude Code' })
-
 m('n', '<Leader>q', function()
   vim.diagnostic.setloclist { open = false }
   -- local window = vim.api.nvim_get_current_win()
