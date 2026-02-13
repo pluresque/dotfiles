@@ -11,15 +11,13 @@
       source <(fzf --zsh)
     '';
   };
-  
+
   home.shellAliases = {
     k = "kubectl";
     v = "nvim";
     vim = "nvim";
     ls = "eza --long";
     python = "python3";
-    cd = "z";
-    cdi = "zi";
     neofetch = "fastfetch";
   };
 }

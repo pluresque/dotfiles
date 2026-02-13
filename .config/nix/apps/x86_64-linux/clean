@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${YELLOW}Cleaning up old system generations and boot files...${NC}"
+
+echo -e "${YELLOW}Removing old system generations...${NC}"
+sudo nix-collect-garbage --delete-older-than 7d
+
+echo -e "${YELLOW}Cleaning up boot partition...${NC}"
+sudo /run/current-system/sw/bin/nixos-rebuild boot --install-bootloader
+
+echo -e "${GREEN}Cleanup complete!${NC}"
+echo -e "${YELLOW}Boot partition status:${NC}"
+df -h /boot

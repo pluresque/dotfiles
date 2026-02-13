@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -e
+
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+RED='\033[1;31m'
+NC='\033[0m'
+
+echo -e "${YELLOW}First-time setup for macOS (darwin)...${NC}"
+
+# Check for Nix
+if ! command -v nix &>/dev/null; then
+  echo -e "${RED}Nix is not installed. Please install Nix first:${NC}"
+  echo "  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install"
+  exit 1
+fi
+
+# Build and switch
+echo -e "${YELLOW}Building configuration...${NC}"
+export NIXPKGS_ALLOW_UNFREE=1
+nix --extra-experimental-features 'nix-command flakes' build .#darwinConfigurations.pluresque.system "$@"
+
+echo -e "${YELLOW}Switching to new generation...${NC}"
+sudo ./result/sw/bin/darwin-rebuild switch --flake .#pluresque "$@"
+
+echo -e "${YELLOW}Cleaning up...${NC}"
+unlink ./result
+
+echo -e "${GREEN}First-time setup complete!${NC}"

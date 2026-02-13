@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -e
+
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+RED='\033[1;31m'
+NC='\033[0m'
+
+# Parse --host argument
+HOST=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --host=*)
+      HOST="${1#*=}"
+      shift
+      ;;
+    --host)
+      HOST="$2"
+      shift 2
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+if [ -z "$HOST" ]; then
+  echo -e "${RED}Usage: apply --host <hostname>${NC}"
+  echo -e "  Available hosts: pluresque-desktop, pluresque-homelab"
+  exit 1
+fi
+
+echo -e "${YELLOW}Fresh NixOS install for host: $HOST${NC}"
+
+# Format disk with disko
+echo -e "${YELLOW}Formatting disk with disko...${NC}"
+sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/disko -- --mode disko --flake .#"$HOST"
+
+# Install NixOS
+echo -e "${YELLOW}Installing NixOS...${NC}"
+sudo nixos-install --flake .#"$HOST"
+
+echo -e "${GREEN}NixOS installation complete! Please reboot.${NC}"

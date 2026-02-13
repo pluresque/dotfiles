@@ -9,18 +9,12 @@
 
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
     };
 
     eza = {
       enable = true;
       enableZshIntegration = true;
     };
-
-    # zellij = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
 
   tmux = {
     enable = true;
@@ -126,11 +120,7 @@ bind-key -n -N 'Toggle popup window' M-3 if-shell -F '#{==:#{session_name},popup
             separator = ": ";
           };
           modules = [
-            {
-              type = "custom";
-              key = "System";
-              format = "macOS";
-            }
+            "os"
             "memory"
             "packages"
             "uptime"

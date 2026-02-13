@@ -1,31 +1,99 @@
-# dotfiles
+# Dotfiles
 
-> **Disclaimer:** _This is not a distribution._ It's a
-> private configuration (for neovim, zellij, etc.) and an ongoing experiment to feel out Nix. Feel free
-> to use it as a reference
-
-Pretty much the whole system is configured with Nix, but Neovim itself is standalone
+Personal multi-platform config for my desktop, laptop and homelab.
 
 ## nvim
 
-I use it for almost every purpose, paired with Zellij (for sessions, panes, and floating windows), but I like to keep it minimal
+I use it for coding and basic text editing, paired with tmux.
 
-I have LSP configured for:
-
-* Python (pyright + ruff)
-* Rust (rust-analyzer)
-* TypeScript/JavaScript (tsserver)
-* Lua (lua-language-server)
-* C# (OmniSharp)
 
 ## nix
 
-There's always room for improvement for Nix. Maybe one day I'll get around to it. For now, it manages macOS host for my main machine.
+Multi-platform config: macOS (nix-darwin) and NixOS (desktop + homelab server). Single unstable nixpkgs channel everywhere
 
-Here's what I use as of now (and want to share):
-- Zen Browser - Arc w/o BS
-- Sioyek - not terrible pdf/epub/... viewer
-- Colima - docker that doesn't suck on macOS
-- Spokenly - voice to text on local whisper model
-- Amethyst - simple and straightforward window manager
-- Ghostty 
+### Hosts
+
+| Host | Platform | Arch | What it is |
+|------|----------|------|------------|
+| `pluresque` | macOS (nix-darwin) | aarch64-darwin | MBA M1 |
+| `pluresque-desktop` | NixOS | x86_64-linux | AMD 7700XT, Hyprland, no status bar |
+| `pluresque-homelab` | NixOS | aarch64-linux | headless server, Docker + Podman, hardened SSH |
+
+### Structure
+
+```
+.config/nix/
+├── flake.nix
+├── apps/                        # helper scripts per platform
+│   ├── aarch64-darwin/          # build-switch, apply, clean, rollback
+│   ├── x86_64-linux/            # build-switch, apply, clean, create-keys, copy-keys
+│   └── aarch64-linux -> x86_64-linux
+├── hosts/
+│   ├── darwin/                  # macOS host config
+│   └── nixos/
+│       ├── pluresque-desktop/   # desktop with Hyprland + SDDM + PipeWire
+│       └── pluresque-homelab/   # server with Docker/Podman
+├── modules/
+│   ├── shared/                  # cross-platform: nix settings, shell, git, packages, fonts
+│   ├── darwin/                  # macOS-only: system defaults, homebrew, secrets
+│   └── nixos/                   # NixOS-only: desktop environment, disk layout, secrets
+└── overlays/                    # auto-loaded, drop .nix files here
+```
+
+Three-tier module system — `shared` is imported by every host, then `darwin` or `nixos` layers on top. Packages live in `shared/packages.nix` as a plain function (not a module), called by platform-specific home-manager configs which add their own extras (e.g. `colima` on macOS, `xdg-utils` on NixOS)
+
+### Usage
+
+macOS — build and switch:
+```sh
+# from .config/nix/
+nix run .#build-switch
+
+# or manually
+nix build .#darwinConfigurations.pluresque.system
+sudo ./result/sw/bin/darwin-rebuild switch --flake .#pluresque
+```
+
+NixOS — build and switch:
+```sh
+nix run .#build-switch -- --host pluresque-desktop
+# or
+sudo nixos-rebuild switch --flake .#pluresque-desktop
+```
+
+Fresh NixOS install (formats disk via disko):
+```sh
+nix run .#apply -- --host pluresque-desktop
+```
+
+### agenix
+
+Secrets are managed with [agenix](https://github.com/ryantm/agenix). The placeholder configs are in `modules/darwin/secrets.nix` and `modules/nixos/secrets.nix`
+
+Setup:
+
+1. Generate an age keypair (or use an existing SSH ed25519 key)
+2. Create a `secrets/` repo with a `secrets.nix` that lists your public keys
+3. Encrypt secrets: `agenix -e my-secret.age`
+4. Reference them in the secrets module:
+```nix
+age.secrets."my-secret" = {
+  file = "${secrets}/my-secret.age";
+  path = "/home/pluresque/.config/whatever";
+  mode = "600";
+  owner = "pluresque";
+};
+```
+
+Identity paths are already set — `/Users/apple/.ssh/id_ed25519` on macOS, `/home/pluresque/.ssh/id_ed25519` on NixOS
+
+On NixOS you can generate fresh keys with `nix run .#create-keys` or copy them from USB with `nix run .#copy-keys`
+
+### What I use (and want to share)
+
+- Zen Browser — Arc w/o BS
+- Sioyek — not terrible pdf/epub/... viewer
+- Colima — docker that doesn't suck on macOS
+- Spokenly — voice to text on local whisper model
+- Amethyst — simple and straightforward window manager
+- Ghostty

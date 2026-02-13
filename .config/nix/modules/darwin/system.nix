@@ -16,7 +16,7 @@
       launchctl start com.apple.Dock.agent
     '';
 
-    primaryUser = "apple"; 
+    primaryUser = "apple";
 
     stateVersion = 5;
 
@@ -66,7 +66,7 @@
         AppleKeyboardUIMode = 3;  # Mode 3 enables full keyboard control.
         ApplePressAndHoldEnabled = true;  # enable press and hold
         AppleShowAllFiles = true;
-        # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
+        # If you press and hold certain keyboard keys when in a text area, the key's character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
         # sets how long it takes before it starts repeating.
         InitialKeyRepeat = 15;  # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
@@ -149,9 +149,6 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  # this is required if you want to use darwin's default shell - zsh
-  # programs.zsh.enable = true;
   environment.shells = [
     pkgs.zsh
   ];
