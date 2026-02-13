@@ -2,12 +2,17 @@
 
 Personal multi-platform config for my desktop, laptop and homelab.
 
-## nvim
+## Nvim
 
-I use it for coding and basic text editing, paired with tmux.
+Managed via `vim.pack` (built-in package manager, no lazy.nvim). Gruvbox Material hard theme.
 
+Plugins: treesitter, nvim-lspconfig, blink.cmp (completion), fzf-lua (fuzzy finder + ui-select), flash (jump motions), aerial (code outline), conform (formatting), nvim-lint, neogit, undotree, rustaceanvim, kulala (REST client), peek (markdown preview), codediff, wakatime. Heavy use of mini.nvim: files, ai, surround, bufremove, bracketed, git, diff, notify, hipatterns, icons.
 
-## nix
+LSP servers: pyright, ruff, ts_ls, omnisharp, yamlls (with k8s/docker-compose/github schemas), phpactor, lua_ls. Document highlighting, inlay hints toggle, codelens.
+
+Key bindings: `<leader><space>` files, `<leader>/` grep, `<leader>,` buffers, `<Enter>` flash jump, `<C-e>` mini.files, `<leader>cf` format, `gd/gr/gi/ga` LSP navigation.
+
+## Nix
 
 Multi-platform config: macOS (nix-darwin) and NixOS (desktop + homelab server). Single unstable nixpkgs channel everywhere
 
@@ -16,7 +21,7 @@ Multi-platform config: macOS (nix-darwin) and NixOS (desktop + homelab server). 
 | Host | Platform | Arch | What it is |
 |------|----------|------|------------|
 | `pluresque` | macOS (nix-darwin) | aarch64-darwin | MBA M1 |
-| `pluresque-desktop` | NixOS | x86_64-linux | AMD 7700XT, Hyprland, no status bar |
+| `pluresque-desktop` | NixOS | x86_64-linux | AMD 7700XT, Hyprland, Btrfs |
 | `pluresque-homelab` | NixOS | aarch64-linux | headless server, Docker + Podman, hardened SSH |
 
 ### Structure
@@ -40,7 +45,7 @@ Multi-platform config: macOS (nix-darwin) and NixOS (desktop + homelab server). 
 └── overlays/                    # auto-loaded, drop .nix files here
 ```
 
-Three-tier module system — `shared` is imported by every host, then `darwin` or `nixos` layers on top. Packages live in `shared/packages.nix` as a plain function (not a module), called by platform-specific home-manager configs which add their own extras (e.g. `colima` on macOS, `xdg-utils` on NixOS)
+Three-tier module system - `shared` is imported by every host, then `darwin` or `nixos` layers on top. Packages live in `shared/packages.nix` as a plain function (not a module), called by platform-specific home-manager configs which add their own extras (e.g. `colima` on macOS, `xdg-utils` on NixOS)
 
 ### Usage
 
@@ -84,16 +89,5 @@ age.secrets."my-secret" = {
   owner = "pluresque";
 };
 ```
-
-Identity paths are already set — `/Users/apple/.ssh/id_ed25519` on macOS, `/home/pluresque/.ssh/id_ed25519` on NixOS
-
 On NixOS you can generate fresh keys with `nix run .#create-keys` or copy them from USB with `nix run .#copy-keys`
 
-### What I use (and want to share)
-
-- Zen Browser — Arc w/o BS
-- Sioyek — not terrible pdf/epub/... viewer
-- Colima — docker that doesn't suck on macOS
-- Spokenly — voice to text on local whisper model
-- Amethyst — simple and straightforward window manager
-- Ghostty
