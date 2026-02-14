@@ -6,7 +6,7 @@ vim.pack.add({
   { src = "https://github.com/echasnovski/mini.nvim", name = "mini" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", name = "nvim-treesitter" },
   { src = "https://github.com/neovim/nvim-lspconfig", name = "nvim-lspconfig" },
-  { src = "https://github.com/saghen/blink.cmp", name = "blink-cmp" },
+  { src = "https://github.com/saghen/blink.cmp", name = "blink-cmp", version = vim.version.range("1.*") },
 
   -- Navigation
   { src = "https://github.com/ibhagwan/fzf-lua", name = "fzf-lua" },

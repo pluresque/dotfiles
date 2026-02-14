@@ -5,8 +5,9 @@
       "src": "https://github.com/stevearc/aerial.nvim"
     },
     "blink-cmp": {
-      "rev": "85666c5",
-      "src": "https://github.com/saghen/blink.cmp"
+      "rev": "4b18c32",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
     },
     "codediff": {
       "rev": "7e5cda2",
@@ -33,7 +34,7 @@
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "mini": {
-      "rev": "4e61631",
+      "rev": "8ccd03b",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "neogit": {

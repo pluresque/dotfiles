@@ -21,6 +21,7 @@ with pkgs;
 
   # Editors
   neovim-nightly-overlay.packages.${pkgs.system}.default
+  tree-sitter
 
   # Utils
   eza # Better ls
