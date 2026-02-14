@@ -113,12 +113,12 @@
     in
     {
       darwinConfigurations.pluresque = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
         specialArgs = inputs // {
           username = "apple";
           inherit useremail;
         };
         modules = [
+          { nixpkgs.hostPlatform = "aarch64-darwin"; }
           home-manager.darwinModules.home-manager
           {
             home-manager.extraSpecialArgs = inputs // {
