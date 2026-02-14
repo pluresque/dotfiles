@@ -1,4 +1,4 @@
-{ username, pkgs, neovim-nightly-overlay, ... }: {
+{ username, pkgs, neovim-nightly-overlay, llm-agents, ... }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -8,7 +8,7 @@
         username = username;
         homeDirectory = "/Users/${username}";
         stateVersion = "25.05";
-        packages = (import ../shared/packages.nix { inherit pkgs neovim-nightly-overlay; }) ++ (with pkgs; [ colima ]);
+        packages = (import ../shared/packages.nix { inherit pkgs neovim-nightly-overlay llm-agents; }) ++ (with pkgs; [ colima ]);
       };
     };
   };

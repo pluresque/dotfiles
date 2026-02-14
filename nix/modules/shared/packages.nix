@@ -1,4 +1,4 @@
-{ pkgs, neovim-nightly-overlay }: with pkgs; [
+{ pkgs, neovim-nightly-overlay, llm-agents }: with pkgs; [
   python312
   python312Packages.setuptools
   nodejs_22
@@ -40,8 +40,13 @@
   ncdu
   pfetch
 
+  # AI agents
+  llm-agents.packages.${pkgs.system}.claude-code
+  llm-agents.packages.${pkgs.system}.codex
+
   # Development
   git
+  gh
   uv
   docker
   kubectl
