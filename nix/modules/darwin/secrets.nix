@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   age = {
     identityPaths = [
       "/Users/apple/.ssh/id_ed25519"

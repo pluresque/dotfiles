@@ -1,4 +1,10 @@
-{ agenix, username, pkgs, lib, ... }: {
+{
+  agenix,
+  username,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ../../../modules/shared
     ../../../modules/nixos/packages.nix
@@ -18,7 +24,11 @@
   # Firewall
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
+    allowedTCPPorts = [
+      22
+      80
+      443
+    ];
   };
 
   # Timezone & Locale
@@ -34,7 +44,12 @@
     isNormalUser = true;
     home = "/home/${username}";
     description = username;
-    extraGroups = [ "networkmanager" "wheel" "docker" "podman" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "podman"
+    ];
     shell = pkgs.zsh;
   };
 

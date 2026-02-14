@@ -41,110 +41,142 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay?shallow=true";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix?shallow=true";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database?shallow=true";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    darwin,
-    home-manager,
-    agenix,
-    disko,
-    ...
-  }: let
-    useremail = "daniilfedotov@protonmail.com";
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      darwin,
+      home-manager,
+      disko,
+      ...
+    }:
+    let
+      useremail = "daniilfedotov@protonmail.com";
 
-    linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
-    darwinSystems = [ "aarch64-darwin" ];
-    allSystems = linuxSystems ++ darwinSystems;
-    forAllSystems = f: nixpkgs.lib.genAttrs allSystems f;
-
-    mkApp = scriptName: system: {
-      type = "app";
-      program = "${(nixpkgs.legacyPackages.${system}.writeScriptBin scriptName ''
-        #!/usr/bin/env bash
-        PATH=${nixpkgs.legacyPackages.${system}.git}/bin:$PATH
-        echo "Running ${scriptName} for ${system}"
-        exec ${self}/apps/${system}/${scriptName} "$@"
-      '')}/bin/${scriptName}";
-    };
-
-    mkDarwinApps = system: {
-      "apply" = mkApp "apply" system;
-      "build-switch" = mkApp "build-switch" system;
-      "clean" = mkApp "clean" system;
-      "rollback" = mkApp "rollback" system;
-    };
-
-    mkLinuxApps = system: {
-      "apply" = mkApp "apply" system;
-      "build-switch" = mkApp "build-switch" system;
-      "clean" = mkApp "clean" system;
-      "create-keys" = mkApp "create-keys" system;
-      "copy-keys" = mkApp "copy-keys" system;
-    };
-  in {
-    darwinConfigurations.pluresque = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = inputs // {
-        username = "apple";
-        inherit useremail;
-      };
-      modules = [
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.extraSpecialArgs = inputs // {
-            username = "apple";
-            inherit useremail;
-          };
-        }
-        ./hosts/darwin
+      linuxSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
       ];
-    };
+      darwinSystems = [ "aarch64-darwin" ];
+      allSystems = linuxSystems ++ darwinSystems;
+      forAllSystems = f: nixpkgs.lib.genAttrs allSystems f;
 
-    nixosConfigurations.pluresque-desktop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = inputs // {
-        username = "pluresque";
-        inherit useremail;
-      };
-      modules = [
-        disko.nixosModules.disko
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.extraSpecialArgs = inputs // {
-            username = "pluresque";
-            inherit useremail;
-          };
+      treefmtEval = forAllSystems (
+        system:
+        inputs.treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} {
+          projectRootFile = "flake.nix";
+          programs.nixfmt.enable = true;
+          programs.deadnix.enable = true;
+          programs.shellcheck.enable = true;
         }
-        ./hosts/nixos/pluresque-desktop
-        ./modules/nixos/home-manager.nix
-      ];
-    };
+      );
 
-    nixosConfigurations.pluresque-homelab = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = inputs // {
-        username = "pluresque";
-        inherit useremail;
+      mkApp = scriptName: system: {
+        type = "app";
+        meta.description = "Helper script: ${scriptName}";
+        program = "${
+          (nixpkgs.legacyPackages.${system}.writeScriptBin scriptName ''
+            #!/usr/bin/env bash
+            PATH=${nixpkgs.legacyPackages.${system}.git}/bin:$PATH
+            echo "Running ${scriptName} for ${system}"
+            exec ${self}/apps/${system}/${scriptName} "$@"
+          '')
+        }/bin/${scriptName}";
       };
-      modules = [
-        disko.nixosModules.disko
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.extraSpecialArgs = inputs // {
-            username = "pluresque";
-            inherit useremail;
-          };
-        }
-        ./hosts/nixos/pluresque-homelab
-        ./modules/nixos/home-manager.nix
-      ];
+
+      mkDarwinApps = system: {
+        "apply" = mkApp "apply" system;
+        "build-switch" = mkApp "build-switch" system;
+        "clean" = mkApp "clean" system;
+        "rollback" = mkApp "rollback" system;
+      };
+
+      mkLinuxApps = system: {
+        "apply" = mkApp "apply" system;
+        "build-switch" = mkApp "build-switch" system;
+        "clean" = mkApp "clean" system;
+        "create-keys" = mkApp "create-keys" system;
+        "copy-keys" = mkApp "copy-keys" system;
+      };
+    in
+    {
+      darwinConfigurations.pluresque = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = inputs // {
+          username = "apple";
+          inherit useremail;
+        };
+        modules = [
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.extraSpecialArgs = inputs // {
+              username = "apple";
+              inherit useremail;
+            };
+          }
+          ./hosts/darwin
+        ];
+      };
+
+      nixosConfigurations.pluresque-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = inputs // {
+          username = "pluresque";
+          inherit useremail;
+        };
+        modules = [
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = inputs // {
+              username = "pluresque";
+              inherit useremail;
+            };
+          }
+          ./hosts/nixos/pluresque-desktop
+          ./modules/nixos/home-manager.nix
+        ];
+      };
+
+      nixosConfigurations.pluresque-homelab = nixpkgs.lib.nixosSystem {
+        specialArgs = inputs // {
+          username = "pluresque";
+          inherit useremail;
+        };
+        modules = [
+          { nixpkgs.hostPlatform = "aarch64-linux"; }
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = inputs // {
+              username = "pluresque";
+              inherit useremail;
+            };
+          }
+          ./hosts/nixos/pluresque-homelab
+          ./modules/nixos/home-manager.nix
+        ];
+      };
+
+      apps =
+        nixpkgs.lib.genAttrs darwinSystems mkDarwinApps // nixpkgs.lib.genAttrs linuxSystems mkLinuxApps;
+
+      formatter = forAllSystems (system: treefmtEval.${system}.config.build.wrapper);
+
+      checks = forAllSystems (system: {
+        formatting = treefmtEval.${system}.config.build.check self;
+      });
     };
-
-    apps = nixpkgs.lib.genAttrs darwinSystems mkDarwinApps
-        // nixpkgs.lib.genAttrs linuxSystems mkLinuxApps;
-
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-  };
 }

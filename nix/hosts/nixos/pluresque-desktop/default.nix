@@ -1,4 +1,10 @@
-{ agenix, username, pkgs, lib, ... }: {
+{
+  agenix,
+  username,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ../../../modules/shared
     ../../../modules/shared/fonts.nix
@@ -32,7 +38,12 @@
     isNormalUser = true;
     home = "/home/${username}";
     description = username;
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "video"
+    ];
     shell = pkgs.zsh;
   };
 

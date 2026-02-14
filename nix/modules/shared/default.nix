@@ -1,7 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -11,12 +14,11 @@
         path = ../../overlays;
       in
       with builtins;
-      map (n: import (path + ("/" + n)))
-        (filter
-          (n:
-            match ".*\\.nix" n != null
-            || pathExists (path + ("/" + n + "/default.nix")))
-          (attrNames (readDir path)));
+      map (n: import (path + ("/" + n))) (
+        filter (n: match ".*\\.nix" n != null || pathExists (path + ("/" + n + "/default.nix"))) (
+          attrNames (readDir path)
+        )
+      );
   };
 
   nix.optimise.automatic = true;

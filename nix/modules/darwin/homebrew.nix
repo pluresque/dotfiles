@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   homebrew = {
     enable = true;
 
@@ -23,7 +24,9 @@
     ];
 
     casks = [
-      "raycast" "iina" "amethyst"
+      "raycast"
+      "iina"
+      "amethyst"
     ];
   };
 }

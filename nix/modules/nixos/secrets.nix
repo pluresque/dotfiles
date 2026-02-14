@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   age = {
     identityPaths = [
       "/home/pluresque/.ssh/id_ed25519"

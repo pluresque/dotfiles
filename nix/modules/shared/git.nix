@@ -1,10 +1,10 @@
 {
   lib,
-  username,
   useremail,
   ...
-}: {
-  home.activation.removeExistingGitconfig = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
+}:
+{
+  home.activation.removeExistingGitconfig = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
     rm -f ~/.gitconfig ~/.config/git/ignore
   '';
 
@@ -12,7 +12,13 @@
     enable = true;
     lfs.enable = true;
 
-    ignores = [ ".DS_Store" "thumbs.db" "CLAUDE.md" "GEMINI.md" ".claude" ];
+    ignores = [
+      ".DS_Store"
+      "thumbs.db"
+      "CLAUDE.md"
+      "GEMINI.md"
+      ".claude"
+    ];
 
     settings = {
       user = {

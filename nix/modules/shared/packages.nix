@@ -1,4 +1,10 @@
-{ pkgs, neovim-nightly-overlay, llm-agents }: with pkgs; [
+{
+  pkgs,
+  neovim-nightly-overlay,
+  llm-agents,
+}:
+with pkgs;
+[
   python312
   python312Packages.setuptools
   nodejs_22
