@@ -47,6 +47,24 @@ Multi-platform config: macOS (nix-darwin) and NixOS (desktop + homelab server). 
 
 Three-tier module system - `shared` is imported by every host, then `darwin` or `nixos` layers on top. Packages live in `shared/packages.nix` as a plain function (not a module), called by platform-specific home-manager configs which add their own extras (e.g. `colima` on macOS, `xdg-utils` on NixOS)
 
+### Nix on macOS after OS updates
+
+macOS updates can wipe the `/nix` volume mount configuration (the APFS volume and store data usually survive). Using the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer) which has a built-in repair command:
+
+```sh
+# Re-create mount points and launchd services (store data is preserved)
+sudo /nix/nix-installer repair
+
+# If fully wiped, reinstall from scratch
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+After repair/reinstall, rebuild your config:
+```sh
+cd ~/Code/dotfiles/nix
+nix run .#build-switch
+```
+
 ### Usage
 
 macOS — build and switch:

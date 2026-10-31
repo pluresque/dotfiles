@@ -10,7 +10,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "codediff": {
-      "rev": "7e5cda2",
+      "rev": "6cfc1e0",
       "src": "https://github.com/esmuellert/codediff.nvim"
     },
     "conform": {
@@ -22,7 +22,7 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
-      "rev": "739330f",
+      "rev": "5921997",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gruvbox-material": {
@@ -34,11 +34,11 @@
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "mini": {
-      "rev": "8ccd03b",
+      "rev": "4ca9885",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "neogit": {
-      "rev": "75ca811d",
+      "rev": "df323856",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "nui": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-lint": {
-      "rev": "bcd1a44",
+      "rev": "a3d1710",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
@@ -54,7 +54,7 @@
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "9f2dad22",
+      "rev": "4d946667",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "peek": {
@@ -66,7 +66,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "rustaceanvim": {
-      "rev": "bb57d9a",
+      "rev": "ec517a0",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "undotree": {
